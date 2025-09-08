@@ -1,5 +1,11 @@
+import { ApplicationViews } from "./views/ApplicationViews"
+
 function App() {
-    return <></>
+    return (
+        <>
+            <ApplicationViews />
+        </>
+    )
 }
 
 export default App

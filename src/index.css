@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+@theme {
+    /* colors */
+    --color-light: #e0e1dd;
+    --color-blue-grey: #778da9;
+    --color-light-blue: #415a77;
+    --color-blue: #1b263b;
+    --color-dark: #0d1b2a;
+
+    --color-black: #1e1e1e;
+}
+
+@layer components {
+    /* cards etc */
+}
