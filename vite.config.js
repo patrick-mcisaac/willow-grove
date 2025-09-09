@@ -4,5 +4,9 @@ import tailwindcss from "@tailwindcss/vite"
 
 // https://vite.dev/config/
 export default defineConfig({
-    plugins: [tailwindcss(), react()]
+    plugins: [tailwindcss(), react()],
+    test: {
+        globals: true, // Enables global test functions (describe, it, expect)
+        environment: "jsdom" // Simulates a browser environment
+    }
 })

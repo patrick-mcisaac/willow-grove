@@ -1,22 +1,11 @@
 import React from "react"
-import { Outlet, Route, Routes } from "react-router-dom"
-import { Home } from "../components/home/Home"
-import { NavBar } from "../components/nav/NavBar"
+import { UserView } from "./UserView"
+import { EventsProvider } from "../components/events/EventsProvider"
 
 export const ApplicationViews = () => {
     return (
-        <Routes>
-            <Route
-                path="/"
-                element={
-                    <>
-                        <NavBar />
-                        <Outlet />
-                    </>
-                }
-            >
-                <Route index element={<Home />} />
-            </Route>
-        </Routes>
+        <EventsProvider>
+            <UserView />
+        </EventsProvider>
     )
 }
