@@ -9,8 +9,10 @@ export const Events = () => {
         getEvents()
     }, [])
     return (
-        <div>
-            <h1>Our Events</h1>
+        <div className="flex flex-col items-center gap-[3rem] p-10">
+            <h1 className="text-center text-[5rem] font-bold tracking-wider">
+                Our Events
+            </h1>
             {events.map(e => (
                 <EventsList key={e.id} event={e} />
             ))}

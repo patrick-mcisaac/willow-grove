@@ -4,24 +4,11 @@ import "@testing-library/jest-dom/vitest"
 import { it, expect, describe, vi } from "vitest"
 import { Events } from "../src/components/events/Events"
 import { EventsList } from "../src/components/events/EventsList"
+import { EventsContext } from "../src/components/events/EventsProvider"
 
-describe("Events", () => {
-    vi.mock("react", async () => {
-        const actual = await vi.importActual("react")
-        return {
-            ...actual,
-            useContext: vi.fn()
-        }
-    })
-
-    vi.mock("../src/components/events/EventsList", () => {
-        return {
-            EventsList: () => <div data-testid="events-list"></div>
-        }
-    })
-
-    it("renders events names", () => {
-        useContext.mockReturnValue({
+const createTestWrapper = (contextValues = {}) => {
+    const {
+        EventValues = {
             events: [
                 {
                     id: 1,
@@ -30,8 +17,27 @@ describe("Events", () => {
                 }
             ],
             getEvents: vi.fn()
-        })
-        render(<Events />)
+        }
+    } = contextValues
+
+    return ({ children }) => (
+        <EventsContext.Provider value={EventValues}>
+            {children}
+        </EventsContext.Provider>
+    )
+}
+
+vi.mock("../src/components/events/EventsList", () => {
+    return {
+        EventsList: () => <div data-testid="events-list"></div>
+    }
+})
+
+describe("Events", () => {
+    it("renders events names", () => {
+        const TestWrapper = createTestWrapper()
+
+        render(<Events />, { wrapper: TestWrapper })
         expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument()
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
             "Our Events"

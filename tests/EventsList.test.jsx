@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react"
-import React, { useContext } from "react"
+import React from "react"
 import "@testing-library/jest-dom/vitest"
-import { it, expect, describe, vi } from "vitest"
+import { it, expect, describe } from "vitest"
 import { EventsList } from "../src/components/events/EventsList"
 
 const mockProp = {

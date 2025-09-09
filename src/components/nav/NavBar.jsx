@@ -22,7 +22,7 @@ export const NavBar = () => {
                 </Link>
             </li>
 
-            <li className="text-xl transition hover:scale-110 md:ml-auto">
+            {/* <li className="text-xl transition hover:scale-110 md:ml-auto">
                 <Link to="/" className="font-bold tracking-wider">
                     Profile
                 </Link>
@@ -32,12 +32,12 @@ export const NavBar = () => {
                 <Link to="/" className="font-bold tracking-wider">
                     Logout
                 </Link>
-            </li>
-            {/*   <li className="md:ml-auto text-xl transition hover:scale-110">
+            </li> */}
+            <li className="text-xl transition hover:scale-110 md:ml-auto">
                 <Link to="/login" className="font-bold tracking-wider">
                     Login
                 </Link>
-            </li> */}
+            </li>
         </ul>
     )
 }
