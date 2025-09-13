@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { ArtistsContext } from "./ArtistsProvider"
+import { UserContext } from "../../views/UserProvider"
+import { Bookings } from "../Bookings/Bookings"
 
 export const ArtistDetails = () => {
     const [artist, setArtist] = useState({})
@@ -8,6 +10,10 @@ export const ArtistDetails = () => {
     const { id } = useParams()
 
     const { getArtistById } = useContext(ArtistsContext)
+
+    const { currentUser } = useContext(UserContext)
+
+    // const navigate = useNavigate()
 
     useEffect(() => {
         getArtistById(parseInt(id)).then(setArtist)
@@ -19,7 +25,7 @@ export const ArtistDetails = () => {
                 {artist.name}
             </h1>
             <img
-                className="w-[40rem] rounded-3xl shadow-2xl"
+                className="shadow-dark w-[40rem] rounded-3xl shadow-md"
                 src={artist.imageUrl}
                 alt={artist.name}
             />
@@ -27,6 +33,16 @@ export const ArtistDetails = () => {
                 <h2 className="text-2xl font-semibold">Contact:</h2>
                 <p className="text-lg">{artist.email}</p>
             </section>
+            {/* {currentUser === artist.id && (
+                <button
+                    onClick={() => navigate(`/artists/${artist.id}/edit`)}
+                    className="shadow-dark bg-blue-grey hover:bg-light-blue text-dark hover:text-light h-[3rem] w-[10rem] cursor-pointer rounded-2xl font-bold tracking-wider shadow-sm hover:scale-105"
+                >
+                    Edit Profile
+                </button>
+            )} */}
+
+            <Bookings />
         </div>
     )
 }

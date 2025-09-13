@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { ArtistsContext } from "../artists/ArtistsProvider"
 import { useNavigate } from "react-router-dom"
+import { UserContext } from "../../views/UserProvider"
 
 export const Login = () => {
     const [userLogin, setUserLogin] = useState({
@@ -8,6 +9,7 @@ export const Login = () => {
     })
 
     const { artists, getArtists } = useContext(ArtistsContext)
+    const { setCurrentUser } = useContext(UserContext)
 
     const navigate = useNavigate()
 
@@ -28,6 +30,7 @@ export const Login = () => {
         if (found) {
             localStorage.setItem("currentUserId", found.id)
             setUserLogin({ email: "" })
+            setCurrentUser(found.id)
             navigate("/")
         } else {
             window.alert("Not registered? Register below")
