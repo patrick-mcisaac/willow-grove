@@ -3,12 +3,13 @@ import { Link } from "react-router-dom"
 import { UserContext } from "../../views/UserProvider"
 
 export const NavBar = () => {
-    // TODO:  make bookings, profile, login/logout dynamic if signed in
     // TODO: hamburger menu for mobile??
 
     const { currentUser, setCurrentUser } = useContext(UserContext)
+
     return (
         <ul className="text-light flex h-[5rem] w-full items-center justify-around gap-[2rem] border-2 border-black bg-black px-5 md:justify-start">
+            {/* maybe not mvp for events page */}
             <li className="text-xl transition hover:scale-110">
                 <Link to="/events" className="font-bold tracking-wider">
                     Events
@@ -22,7 +23,9 @@ export const NavBar = () => {
 
             {currentUser ?
                 <>
-                    {/*  <li
+                    {/* 
+                    NOT MVP
+                    <li
                         to="/bookings"
                         className="text-xl transition hover:scale-110"
                     >
@@ -56,11 +59,21 @@ export const NavBar = () => {
                         </Link>
                     </li>
                 </>
-            :   <li className="text-xl transition hover:scale-110 md:ml-auto">
-                    <Link to="/login" className="font-bold tracking-wider">
-                        Login
-                    </Link>
-                </li>
+            :   <>
+                    <li className="text-xl transition hover:scale-110 md:ml-auto">
+                        <Link to="/login" className="font-bold tracking-wider">
+                            Login
+                        </Link>
+                    </li>
+                    <li className="text-xl transition hover:scale-110">
+                        <Link
+                            to="/register"
+                            className="font-bold tracking-wider"
+                        >
+                            Register
+                        </Link>
+                    </li>
+                </>
             }
         </ul>
     )

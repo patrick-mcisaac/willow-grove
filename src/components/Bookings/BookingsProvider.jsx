@@ -23,6 +23,26 @@ export const BookingsProvider = ({ children }) => {
             .then(setBooking)
     }
 
+    const addBooking = data => {
+        return fetch(`http://localhost:8088/bookings`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+    }
+
+    const editBooking = (id, data) => {
+        return fetch(`http://localhost:8088/bookings/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+    }
+
     return (
         <BookingsContext.Provider
             value={{
@@ -30,7 +50,9 @@ export const BookingsProvider = ({ children }) => {
                 booking,
                 setBooking,
                 getBookings,
-                removeBooking
+                removeBooking,
+                addBooking,
+                editBooking
             }}
         >
             {children}

@@ -5,6 +5,7 @@ import { EventsProvider } from "../components/events/EventsProvider"
 import { ArtistsProvider } from "../components/artists/ArtistsProvider"
 import { UserContext } from "./UserProvider"
 import { BookingsProvider } from "../components/Bookings/BookingsProvider"
+import { LocationsProvider } from "../components/locatioins/LocationsProvider"
 
 export const ApplicationViews = () => {
     const { currentUser, setCurrentUser } = useContext(UserContext)
@@ -18,7 +19,9 @@ export const ApplicationViews = () => {
         <ArtistsProvider>
             <EventsProvider>
                 <BookingsProvider>
-                    <ArtistView />
+                    <LocationsProvider>
+                        <ArtistView />
+                    </LocationsProvider>
                 </BookingsProvider>
             </EventsProvider>
         </ArtistsProvider>

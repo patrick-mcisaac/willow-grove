@@ -2,8 +2,6 @@ import React from "react"
 import { useNavigate } from "react-router-dom"
 
 export const ArtistsList = ({ artist }) => {
-    // TODO: make section clickable and link to artist page
-
     const navigate = useNavigate()
 
     return (

@@ -5,10 +5,10 @@ import { Home } from "../components/home/Home"
 import { Events } from "../components/events/Events"
 import { Artists } from "../components/artists/Artists"
 import { ArtistDetails } from "../components/artists/ArtistDetails"
-import { EditArtist } from "../components/artists/EditArtist"
-import { Bookings } from "../components/Bookings/Bookings"
 import { EditBooking } from "../components/Bookings/EditBooking"
 import { Login } from "../components/auth/Login"
+import { Register } from "../components/auth/Register"
+import { AddBooking } from "../components/Bookings/AddBooking"
 
 export const ArtistView = () => {
     return (
@@ -33,9 +33,11 @@ export const ArtistView = () => {
                             path="booking/:bookingId/edit"
                             element={<EditBooking />}
                         />
+                        <Route path="booking/add" element={<AddBooking />} />
                     </Route>
                 </Route>
                 <Route path="login" element={<Login />} />
+                <Route path="register" element={<Register />} />
             </Route>
         </Routes>
     )

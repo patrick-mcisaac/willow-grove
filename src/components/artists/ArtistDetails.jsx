@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { ArtistsContext } from "./ArtistsProvider"
-import { UserContext } from "../../views/UserProvider"
+// import { UserContext } from "../../views/UserProvider"
 import { Bookings } from "../Bookings/Bookings"
 
 export const ArtistDetails = () => {
@@ -11,13 +11,15 @@ export const ArtistDetails = () => {
 
     const { getArtistById } = useContext(ArtistsContext)
 
-    const { currentUser } = useContext(UserContext)
-
+    /*
+        NOT MVP
+        const { currentUser } = useContext(UserContext)
+    */
     // const navigate = useNavigate()
 
     useEffect(() => {
-        getArtistById(parseInt(id)).then(setArtist)
-    }, [])
+        getArtistById(id).then(setArtist)
+    }, [id])
 
     return (
         <div className="flex flex-col items-center justify-start gap-5 p-10">

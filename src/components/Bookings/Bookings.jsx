@@ -1,11 +1,14 @@
 import React, { useContext, useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { BookingsContext } from "./BookingsProvider"
 import { BookingsList } from "./BookingsList"
+import { UserContext } from "../../views/UserProvider"
 
 export const Bookings = () => {
     const [bookings, setBookings] = useState([])
     const { getBookings } = useContext(BookingsContext)
+    const { currentUser } = useContext(UserContext)
+    const navigate = useNavigate()
 
     const { id } = useParams()
 
@@ -17,6 +20,19 @@ export const Bookings = () => {
             <h2 className="text-[2rem] font-bold tracking-wider">
                 Upcoming Gigs
             </h2>
+
+            {/* TODO: add booking button and form */}
+
+            {currentUser === parseInt(id) && (
+                <button
+                    onClick={() =>
+                        navigate(`/artists/${currentUser}/booking/add`)
+                    }
+                    className="shadow-dark bg-blue-grey hover:bg-light-blue text-dark hover:text-light h-[3rem] w-[10rem] cursor-pointer rounded-2xl font-bold tracking-wider shadow-sm transition hover:scale-105"
+                >
+                    Add Gig
+                </button>
+            )}
 
             <section className="flex flex-col items-center gap-[5rem]">
                 {bookings.map(b => {
