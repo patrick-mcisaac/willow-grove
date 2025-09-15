@@ -4,16 +4,40 @@ import "@testing-library/jest-dom/vitest"
 import { it, expect, describe, vi } from "vitest"
 import { ArtistsContext } from "../src/components/artists/ArtistsProvider"
 import { ArtistDetails } from "../src/components/artists/ArtistDetails"
+import { BookingsContext } from "../src/components/Bookings/BookingsProvider"
+import { UserContext } from "../src/views/UserProvider"
+import { BrowserRouter } from "react-router-dom"
 
 const createTestWrapper = (contextValues = {}) => {
-    const ArtistValues = {
-        getArtistById: vi.fn().mockResolvedValue({
-            id: 1,
-            name: "test name",
-            email: "test email",
-            url: "test url"
-        })
-    }
+    const {
+        ArtistValues = {
+            getArtistById: vi.fn().mockResolvedValue({
+                id: 1,
+                name: "test name",
+                email: "test email",
+                url: "test url"
+            })
+        },
+        BookingValues = {
+            removeBooking: vi.fn(),
+            getBookingById: vi.fn(),
+            addBooking: vi.fn(),
+            editBooking: vi.fn(),
+            getBookings: vi.fn().mockResolvedValue([
+                {
+                    id: 1,
+                    userId: 1,
+                    eventTypeId: 1,
+                    locationId: 1,
+                    date: "test"
+                }
+            ]),
+            setBooking: vi.fn()
+        },
+        UserValues = {
+            currentUser: 1
+        }
+    } = contextValues
 
     return ({ children }) => (
         <ArtistsContext.Provider value={ArtistValues}>
@@ -21,6 +45,11 @@ const createTestWrapper = (contextValues = {}) => {
         </ArtistsContext.Provider>
     )
 }
+vi.mock("../src/components/Bookings/Bookings", () => {
+    return {
+        Bookings: () => <div data-testid="bookings"></div>
+    }
+})
 
 describe("Artist Details Page", () => {
     it("renders an artists details", async () => {
@@ -38,5 +67,6 @@ describe("Artist Details Page", () => {
         expect(screen.getByRole("img")).toBeInTheDocument()
         expect(screen.getByText(/test email/i)).toBeInTheDocument()
         expect(screen.getByText(/test email/i)).toBeInTheDocument()
+        expect(screen.getByTestId("bookings")).toBeInTheDocument()
     })
 })

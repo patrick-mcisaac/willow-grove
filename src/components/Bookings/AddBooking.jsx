@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect } from "react"
 import { BookingsContext } from "./BookingsProvider"
 import { EventsContext } from "../events/EventsProvider"
 import { ArtistsContext } from "../artists/ArtistsProvider"

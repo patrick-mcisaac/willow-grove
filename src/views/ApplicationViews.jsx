@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react"
-import { UserView } from "./UserView"
+
 import { ArtistView } from "./ArtistView"
 import { EventsProvider } from "../components/events/EventsProvider"
 import { ArtistsProvider } from "../components/artists/ArtistsProvider"

@@ -14,14 +14,12 @@ export const Bookings = () => {
 
     useEffect(() => {
         getBookings(parseInt(id)).then(setBookings)
-    }, [bookings])
+    }, [])
     return (
         <section className="mt-[2rem] flex flex-col items-center gap-[5rem]">
             <h2 className="text-[2rem] font-bold tracking-wider">
                 Upcoming Gigs
             </h2>
-
-            {/* TODO: add booking button and form */}
 
             {currentUser === parseInt(id) && (
                 <button

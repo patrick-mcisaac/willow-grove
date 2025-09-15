@@ -80,7 +80,7 @@ export const Register = () => {
 
         localStorage.setItem("currentUserId", locationData[0].userId)
         setCurrentUser(locationData[0].userId)
-        navigate("/")
+        navigate(`/artists/${locationData[0].userId}`)
     }
 
     return (

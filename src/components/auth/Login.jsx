@@ -31,7 +31,7 @@ export const Login = () => {
             localStorage.setItem("currentUserId", found.id)
             setUserLogin({ email: "" })
             setCurrentUser(found.id)
-            navigate("/")
+            navigate(`/artists/${found.id}`)
         } else {
             window.alert("Not registered? Register below")
         }

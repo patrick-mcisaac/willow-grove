@@ -1,29 +1,53 @@
 import { render, screen } from "@testing-library/react"
 import React from "react"
 import "@testing-library/jest-dom/vitest"
-import { it, expect, describe } from "vitest"
+import { it, expect, describe, vi, afterEach } from "vitest"
 import { NavBar } from "../src/components/nav/NavBar.jsx"
 import { BrowserRouter } from "react-router-dom"
+import { UserContext } from "../src/views/UserProvider.jsx"
+
+const mockSetUser = vi.fn()
+
+const createWrapper = (contextValues = {}) => {
+    const {
+        UserValues = {
+            setCurrentUser: mockSetUser,
+            currentUser: null
+        }
+    } = contextValues
+
+    return ({ children }) => (
+        <UserContext.Provider value={UserValues}>
+            {children}
+        </UserContext.Provider>
+    )
+}
+
+afterEach(() => {
+    vi.clearAllMocks()
+})
 
 describe("Nav Bar", () => {
     it("renders a navbar ul", () => {
+        const TestWrapper = createWrapper()
         render(
             <BrowserRouter>
                 <NavBar />
-            </BrowserRouter>
+            </BrowserRouter>,
+            { wrapper: TestWrapper }
         )
         expect(screen.getByRole("list")).toBeInTheDocument()
     })
 
-    it.skip("has Events, Artists, and Login in the bar", () => {
+    it("has Artists, and Login in the bar", () => {
+        const TestWrapper = createWrapper()
+
         render(
             <BrowserRouter>
                 <NavBar />
-            </BrowserRouter>
+            </BrowserRouter>,
+            { wrapper: TestWrapper }
         )
-        expect(
-            screen.getByRole("link", { name: /events/i })
-        ).toBeInTheDocument()
 
         expect(
             screen.getByRole("link", { name: /artists/i })
@@ -32,7 +56,23 @@ describe("Nav Bar", () => {
         expect(screen.getByRole("link", { name: /login/i })).toBeInTheDocument()
     })
 
-    // TODO: when user is logged in
+    it("should have logout", () => {
+        const TestWrapper = createWrapper({
+            UserValues: {
+                currentUser: 1,
+                setCurrentUser: mockSetUser
+            }
+        })
 
-    it.skip("has logout, bookings, and profile when signed in", () => {})
+        render(
+            <BrowserRouter>
+                <NavBar />
+            </BrowserRouter>,
+            { wrapper: TestWrapper }
+        )
+
+        expect(
+            screen.getByRole("link", { name: /logout/i })
+        ).toBeInTheDocument()
+    })
 })
