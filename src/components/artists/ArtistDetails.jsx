@@ -20,15 +20,15 @@ export const ArtistDetails = () => {
             <h1 className="text-[5rem] font-bold tracking-wider">
                 {artist.name}
             </h1>
+            <section className="flex flex-col items-center gap-2">
+                <h2 className="text-2xl font-semibold">Contact:</h2>
+                <p className="text-lg">{artist.email}</p>
+            </section>
             <img
                 className="shadow-dark w-[40rem] rounded-3xl shadow-md"
                 src={artist.imageUrl}
                 alt={artist.name}
             />
-            <section className="flex flex-col items-center gap-2">
-                <h2 className="text-2xl font-semibold">Contact:</h2>
-                <p className="text-lg">{artist.email}</p>
-            </section>
 
             <Bookings />
         </div>

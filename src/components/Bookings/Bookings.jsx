@@ -16,7 +16,7 @@ export const Bookings = () => {
         getBookings(parseInt(id)).then(setBookings)
     }, [])
     return (
-        <section className="mt-[2rem] flex flex-col items-center gap-[5rem]">
+        <section className="mt-[3rem] flex flex-col items-center gap-[4rem]">
             <h2 className="text-[2rem] font-bold tracking-wider">
                 Upcoming Gigs
             </h2>
