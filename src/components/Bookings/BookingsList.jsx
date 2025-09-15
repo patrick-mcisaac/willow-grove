@@ -10,7 +10,7 @@ export const BookingsList = ({ booking, setBookings, getBookings }) => {
     const { currentUser } = useContext(UserContext)
     return (
         <div className="relative flex flex-col items-center">
-            <div className="flex h-[8rem] w-[30rem] flex-col justify-evenly rounded-2xl border-1">
+            <div className="shadow-blue border-light-blue flex h-[8rem] w-[30rem] flex-col justify-evenly rounded-2xl border-[.1rem] shadow-md">
                 <div className="flex justify-around">
                     <p className="text-[1.5rem] font-semibold">
                         {booking.date}
