@@ -4,9 +4,6 @@ import "@testing-library/jest-dom/vitest"
 import { it, expect, describe, vi } from "vitest"
 import { ArtistsContext } from "../src/components/artists/ArtistsProvider"
 import { ArtistDetails } from "../src/components/artists/ArtistDetails"
-import { BookingsContext } from "../src/components/Bookings/BookingsProvider"
-import { UserContext } from "../src/views/UserProvider"
-import { BrowserRouter } from "react-router-dom"
 
 const createTestWrapper = (contextValues = {}) => {
     const {
