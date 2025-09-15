@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import React, { act } from "react"
+import React from "react"
 import "@testing-library/jest-dom/vitest"
 import { it, expect, describe, vi, beforeEach } from "vitest"
 import { BookingsList } from "../src/components/Bookings/BookingsList"

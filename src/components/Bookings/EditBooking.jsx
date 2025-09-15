@@ -40,6 +40,7 @@ export const EditBooking = () => {
     }
     return (
         <form
+            name="form"
             className="mx-auto mt-[10rem] flex w-[20rem] flex-col items-center gap-10"
             action=""
         >
