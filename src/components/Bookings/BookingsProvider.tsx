@@ -1,29 +1,57 @@
-import { createContext, useState } from "react"
+import React, {
+    createContext,
+    useContext,
+    useState,
+    type ReactNode
+} from "react"
 
-export const BookingsContext = createContext()
+interface Props {
+    children: React.ReactNode
+}
 
-export const BookingsProvider = ({ children }) => {
+interface Booking {
+    userId: number
+    eventTypeId: number
+    locationId: number
+    date: string
+}
+
+interface BookingsContextType {
+    booking: Booking | {}
+    setBooking: React.Dispatch<React.SetStateAction<Booking | {}>>
+    getBookings: (id: string) => Promise<any>
+    removeBooking: (id: string) => void
+    getBookingById: (id: string) => void
+    addBooking: (data: Booking) => Promise<Response>
+    editBooking: (id: string, data: Booking) => Promise<Response>
+}
+
+export const BookingsContext = createContext<BookingsContextType | undefined>(
+    undefined
+)
+
+export const BookingsProvider = ({ children }: Props) => {
     const [booking, setBooking] = useState({})
 
-    const getBookings = id => {
+    const getBookings = (id: string): Promise<any> => {
         return fetch(
             `http://localhost:8088/bookings?_expand=user&_expand=location&_expand=eventType&userId=${id}`
         ).then(res => res.json())
     }
 
-    const removeBooking = id => {
+    const removeBooking = (id: string): void => {
         fetch(`http://localhost:8088/bookings/${id}`, {
             method: "DELETE"
         })
     }
 
-    const getBookingById = id => {
+    const getBookingById = (id: string): void => {
         fetch(`http://localhost:8088/bookings/${id}`)
             .then(res => res.json())
             .then(setBooking)
     }
 
-    const addBooking = data => {
+    const addBooking = (data: Booking): Promise<Response> => {
         return fetch(`http://localhost:8088/bookings`, {
             method: "POST",
             headers: {
@@ -33,7 +61,7 @@ export const BookingsProvider = ({ children }) => {
         })
     }
 
-    const editBooking = (id, data) => {
+    const editBooking = (id: string, data: Booking): Promise<Response> => {
         return fetch(`http://localhost:8088/bookings/${id}`, {
             method: "PUT",
             headers: {
@@ -58,4 +86,14 @@ export const BookingsProvider = ({ children }) => {
             {children}
         </BookingsContext.Provider>
     )
+}
+
+/* Custom Hook */
+
+export const useBookings = () => {
+    const context = useContext(BookingsContext)
+    if (!context) {
+        throw new Error("useBookings must be used within BookingsProvider")
+    }
+    return context
 }

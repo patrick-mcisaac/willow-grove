@@ -1,7 +1,7 @@
-import React from "react"
+import React, { type JSX } from "react"
 import home from "../../../assets/images/home.jpg"
 
-export const Home = () => {
+export const Home = (): JSX.Element => {
     return (
         <div className="mt-[1rem] flex flex-col items-center justify-center gap-10 lg:mt-[5rem]">
             <h1 className="flex flex-col items-center justify-start text-[5rem] font-bold tracking-wider text-black text-shadow-lg">

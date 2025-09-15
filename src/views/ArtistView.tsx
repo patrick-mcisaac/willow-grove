@@ -1,14 +1,14 @@
 import React from "react"
 import { Outlet, Route, Routes } from "react-router-dom"
-import { NavBar } from "../components/nav/NavBar.js"
-import { Home } from "../components/home/Home.js"
+import { NavBar } from "../components/nav/NavBar"
+import { Home } from "../components/home/Home"
 
-import { Artists } from "../components/artists/Artists.js"
-import { ArtistDetails } from "../components/artists/ArtistDetails.js"
-import { EditBooking } from "../components/Bookings/EditBooking.js"
-import { Login } from "../components/auth/Login.js"
-import { Register } from "../components/auth/Register.js"
-import { AddBooking } from "../components/Bookings/AddBooking.js"
+import { Artists } from "../components/artists/Artists"
+import { ArtistDetails } from "../components/artists/ArtistDetails"
+import { EditBooking } from "../components/Bookings/EditBooking"
+import { Login } from "../components/auth/Login"
+import { Register } from "../components/auth/Register"
+import { AddBooking } from "../components/Bookings/AddBooking"
 
 export const ArtistView = () => {
     return (

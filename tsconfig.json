@@ -1,45 +1,39 @@
 {
-    // Visit https://aka.ms/tsconfig to read more about this file
     "compilerOptions": {
-        // File Layout
-        // "rootDir": "./src",
+        // React and Browser Settings
+        "jsx": "react-jsx",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "target": "ESNext",
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
+
+        // Output Settings
         "outDir": "./dist",
-
-        // Environment Settings
-        // See also https://aka.ms/tsconfig/module
-        "module": "nodenext",
-        "target": "esnext",
-        "types": [],
-        // For nodejs:
-        // "lib": ["esnext"],
-        // "types": ["node"],
-        // and npm install -D @types/node
-
-        // Other Outputs
         "sourceMap": true,
         "declaration": true,
         "declarationMap": true,
+        "noEmit": true,
 
-        // Stricter Typechecking Options
+        // TypeScript Strictness
+        "strict": true,
         "noUncheckedIndexedAccess": true,
         "exactOptionalPropertyTypes": true,
-
-        // Style Options
-        // "noImplicitReturns": true,
-        // "noImplicitOverride": true,
-        // "noUnusedLocals": true,
-        // "noUnusedParameters": true,
-        // "noFallthroughCasesInSwitch": true,
-        // "noPropertyAccessFromIndexSignature": true,
-
-        // Recommended Options
-        "strict": true,
-        "jsx": "react-jsx",
         "verbatimModuleSyntax": true,
-        "isolatedModules": true,
         "noUncheckedSideEffectImports": true,
+
+        // Module Resolution
+        "allowJs": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
         "moduleDetection": "force",
-        "skipLibCheck": true
+
+        // Path aliases
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./src/*"]
+        }
     },
-    "include": ["./src/"]
+    "include": ["./src/**/*.ts", "./src/**/*.tsx"]
 }

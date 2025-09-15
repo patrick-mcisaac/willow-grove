@@ -1,11 +1,11 @@
 import React, { useContext } from "react"
-import { BookingsContext } from "./BookingsProvider.js"
+import { useBookings } from "./BookingsProvider.js"
 import { useNavigate, useParams } from "react-router-dom"
 import { UserContext } from "../../views/UserProvider.js"
 
 export const BookingsList = ({ booking, setBookings, getBookings }) => {
     const navigate = useNavigate()
-    const { removeBooking } = useContext(BookingsContext)
+    const { removeBooking } = useBookings()
     const { id } = useParams()
     const { currentUser } = useContext(UserContext)
     return (
