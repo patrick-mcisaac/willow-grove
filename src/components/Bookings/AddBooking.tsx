@@ -1,26 +1,29 @@
 import React, { useContext, useEffect } from "react"
-import { EventsContext } from "../events/EventsProvider"
-import { BookingsContext } from "./BookingsProvider"
+import { BookingsContext } from "./BookingsProvider.js"
+import { EventsContext } from "../events/EventsProvider.js"
+import { ArtistsContext } from "../artists/ArtistsProvider.js"
 import { useNavigate, useParams } from "react-router-dom"
-import { ArtistsContext } from "../artists/ArtistsProvider"
 
-export const EditBooking = () => {
+export const AddBooking = () => {
+    const { id } = useParams()
+
+    const { booking, setBooking, addBooking } = useContext(BookingsContext)
     const { getEvents, events } = useContext(EventsContext)
-    const { booking, editBooking, setBooking, getBookingById } =
-        useContext(BookingsContext)
     const { artistLocations, getArtistsLocations } = useContext(ArtistsContext)
-
-    const { id, bookingId } = useParams()
 
     const navigate = useNavigate()
 
     useEffect(() => {
         getEvents()
-        getBookingById(bookingId)
         getArtistsLocations(parseInt(id))
+        setBooking({
+            userId: parseInt(id),
+            eventTypeId: 0,
+            locationId: 0,
+            date: ""
+        })
     }, [])
 
-    // handle change to setBooking to new values
     const handleChange = e => {
         const copyBooking = { ...booking }
         copyBooking[e.target.name] = parseInt(e.target.value)
@@ -29,22 +32,34 @@ export const EditBooking = () => {
 
     const handleDate = e => {
         const copyBooking = { ...booking }
-        copyBooking[e.target.name] = e.target.value
+        copyBooking.date = e.target.value
         setBooking(copyBooking)
     }
 
     const handleSave = e => {
         e.preventDefault()
-        editBooking(bookingId, booking)
-        navigate(`/artists/${id}`)
+
+        if (
+            booking.date === "" ||
+            booking.eventTypeId === 0 ||
+            booking.locationId === 0 ||
+            booking.userId === 0
+        ) {
+            window.alert("fill out the form")
+        } else {
+            addBooking(booking)
+
+            navigate(`/artists/${id}`)
+        }
     }
+
     return (
         <form
             name="form"
             className="mx-auto mt-[10rem] flex w-[20rem] flex-col items-center gap-10"
             action=""
         >
-            <h1 className="text-[3rem] font-bold tracking-wider">Edit Gig</h1>
+            <h1 className="text-[3rem] font-bold tracking-wider">Add a Gig</h1>
             <fieldset className="flex w-full flex-col items-start gap-2">
                 <label className="self-center pl-1 text-xl" htmlFor="event">
                     Event Type

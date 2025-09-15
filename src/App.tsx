@@ -1,5 +1,5 @@
-import { ApplicationViews } from "./views/ApplicationViews"
-import { UserProvider } from "./views/UserProvider"
+import { ApplicationViews } from "./views/ApplicationViews.js"
+import { UserProvider } from "./views/UserProvider.js"
 
 function App() {
     return (

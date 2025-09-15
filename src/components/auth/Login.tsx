@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
-import { ArtistsContext } from "../artists/ArtistsProvider"
+import { ArtistsContext } from "../artists/ArtistsProvider.js"
 import { useNavigate } from "react-router-dom"
-import { UserContext } from "../../views/UserProvider"
+import { UserContext } from "../../views/UserProvider.js"
 
 export const Login = () => {
     const [userLogin, setUserLogin] = useState({

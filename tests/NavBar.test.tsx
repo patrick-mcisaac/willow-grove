@@ -2,9 +2,9 @@ import { render, screen } from "@testing-library/react"
 import React from "react"
 import "@testing-library/jest-dom/vitest"
 import { it, expect, describe, vi, afterEach } from "vitest"
-import { NavBar } from "../src/components/nav/NavBar.jsx"
+import { NavBar } from "../src/components/nav/NavBar.js"
 import { BrowserRouter } from "react-router-dom"
-import { UserContext } from "../src/views/UserProvider.jsx"
+import { UserContext } from "../src/views/UserProvider.js"
 
 const mockSetUser = vi.fn()
 

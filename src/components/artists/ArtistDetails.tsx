@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { ArtistsContext } from "./ArtistsProvider"
+import { ArtistsContext } from "./ArtistsProvider.js"
 // import { UserContext } from "../../views/UserProvider"
-import { Bookings } from "../Bookings/Bookings"
+import { Bookings } from "../Bookings/Bookings.js"
 
 export const ArtistDetails = () => {
     const [artist, setArtist] = useState({})

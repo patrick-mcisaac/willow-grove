@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react"
-import { ArtistsContext } from "../artists/ArtistsProvider"
-import { LocationsContext } from "../locatioins/LocationsProvider"
-import { LocationsCheckbox } from "./LocationsCheckbox"
+import { ArtistsContext } from "../artists/ArtistsProvider.js"
+import { LocationsContext } from "../locatioins/LocationsProvider.js"
+import { LocationsCheckbox } from "./LocationsCheckbox.js"
 import { useNavigate } from "react-router-dom"
-import { UserContext } from "../../views/UserProvider"
+import { UserContext } from "../../views/UserProvider.js"
 
 export const Register = () => {
     const [newUser, setNewUser] = useState({
