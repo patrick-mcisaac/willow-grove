@@ -1,11 +1,24 @@
-import { createContext, useState } from "react"
+import type {
+    ArtistContextType,
+    ArtistLocations,
+    Artists
+} from "@/types/ArtistTypes"
+import React, { createContext, useContext, useState } from "react"
 
-export const ArtistsContext = createContext()
+interface Props {
+    children: React.ReactNode
+}
 
-export const ArtistsProvider = ({ children }) => {
-    const [artists, setArtists] = useState([])
-    const [artistBookings, setArtistBookings] = useState({})
-    const [artistLocations, setArtistLocations] = useState([])
+export const ArtistsContext = createContext<ArtistContextType | undefined>(
+    undefined
+)
+
+export const ArtistsProvider = ({ children }: Props) => {
+    const [artists, setArtists] = useState<Artists[]>([])
+
+    const [artistLocations, setArtistLocations] = useState<ArtistLocations[]>(
+        []
+    )
 
     const getArtists = () => {
         fetch(`http://localhost:8088/users`)
@@ -13,19 +26,13 @@ export const ArtistsProvider = ({ children }) => {
             .then(setArtists)
     }
 
-    const getArtistById = id => {
+    const getArtistById = (id: string): Promise<any> => {
         return fetch(`http://localhost:8088/users/${id}`).then(res =>
             res.json()
         )
     }
 
-    const getArtistBookings = id => {
-        fetch(`http://localhost:8088/users/${id}?_embed=bookings`)
-            .then(res => res.json())
-            .then(setArtistBookings)
-    }
-
-    const addArtist = data => {
+    const addArtist = (data: Artists) => {
         fetch(`http://localhost:8088/users`, {
             method: "POST",
             headers: {
@@ -35,7 +42,7 @@ export const ArtistsProvider = ({ children }) => {
         })
     }
 
-    const updateArtist = (id, data) => {
+    const updateArtist = (id: string, data: Artists) => {
         fetch(`http://localhost:8088/users/${id}`, {
             method: "PUT",
             headers: {
@@ -45,7 +52,7 @@ export const ArtistsProvider = ({ children }) => {
         })
     }
 
-    const getArtistsLocations = id => {
+    const getArtistsLocations = (id: string) => {
         fetch(
             `http://localhost:8088/artistLocations?userId=${id}&_expand=location`
         )
@@ -61,8 +68,6 @@ export const ArtistsProvider = ({ children }) => {
                 getArtistById,
                 addArtist,
                 updateArtist,
-                artistBookings,
-                getArtistBookings,
                 artistLocations,
                 getArtistsLocations
             }}
@@ -70,4 +75,15 @@ export const ArtistsProvider = ({ children }) => {
             {children}
         </ArtistsContext.Provider>
     )
+}
+
+/* Custom Hook */
+
+export const useArtists = () => {
+    const context = useContext(ArtistsContext)
+
+    if (!context) {
+        throw new Error(`useArtists must be used within ArtistsProvider`)
+    }
+    return context
 }

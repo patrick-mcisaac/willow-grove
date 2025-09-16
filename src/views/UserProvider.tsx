@@ -1,13 +1,28 @@
-import { createContext, useEffect, useState } from "react"
+import type { UserContextType } from "@/types/UserTypes"
+import React, { createContext, useContext, useEffect, useState } from "react"
 
-export const UserContext = createContext()
+interface Props {
+    children: React.ReactNode
+}
 
-export const UserProvider = ({ children }) => {
-    const [currentUser, setCurrentUser] = useState(null)
+export const UserContext = createContext<UserContextType | undefined>(undefined)
+
+export const UserProvider = ({ children }: Props) => {
+    const [currentUser, setCurrentUser] = useState<number | null>(null)
 
     return (
         <UserContext.Provider value={{ currentUser, setCurrentUser }}>
             {children}
         </UserContext.Provider>
     )
+}
+
+/* Custom Hook */
+
+export const useUser = () => {
+    const context = useContext(UserContext)
+    if (!context) {
+        throw new Error("useUser must be used within UserProvider")
+    }
+    return context
 }

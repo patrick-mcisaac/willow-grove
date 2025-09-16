@@ -1,9 +1,20 @@
-import { createContext, useState } from "react"
+import type {
+    ArtistLocation,
+    LocationContextType,
+    Locations
+} from "@/types/LocationTypes"
+import React, { createContext, useContext, useState } from "react"
 
-export const LocationsContext = createContext()
+interface Props {
+    children: React.ReactNode
+}
 
-export const LocationsProvider = ({ children }) => {
-    const [locations, setLocations] = useState([])
+export const LocationsContext = createContext<LocationContextType | undefined>(
+    undefined
+)
+
+export const LocationsProvider = ({ children }: Props) => {
+    const [locations, setLocations] = useState<Locations | []>([])
 
     const getLocations = () => {
         fetch(`http://localhost:8088/locations`)
@@ -11,7 +22,7 @@ export const LocationsProvider = ({ children }) => {
             .then(setLocations)
     }
 
-    const addArtistLocation = data => {
+    const addArtistLocation = (data: ArtistLocation) => {
         return fetch(`http://localhost:8088/artistLocations`, {
             method: "POST",
             headers: {
@@ -28,4 +39,13 @@ export const LocationsProvider = ({ children }) => {
             {children}
         </LocationsContext.Provider>
     )
+}
+
+/* Custom Hook */
+export const useLocations = () => {
+    const context = useContext(LocationsContext)
+    if (!context) {
+        throw new Error("useLocations must be used within LocationsProvider")
+    }
+    return context
 }
