@@ -1,4 +1,4 @@
-export interface Events {
+/* export interface Events {
     id: number
     userId: number
     eventTypeId: number
@@ -20,6 +20,12 @@ export interface Events {
         name: string
         id: number
     }
+} */
+
+export interface Events {
+    description: string
+    name: string
+    id: number
 }
 
 export interface EventsContextType {

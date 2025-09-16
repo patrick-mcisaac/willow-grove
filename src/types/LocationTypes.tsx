@@ -5,13 +5,19 @@ export interface Locations {
 }
 
 export interface ArtistLocation {
-    id: number
+    id?: number
     locationId: number
     userId: number
 }
 
 export interface LocationContextType {
-    locations: Locations | []
+    locations: Locations[] | []
     getLocations: () => void
     addArtistLocation: (data: ArtistLocation) => Promise<Response>
+}
+
+export interface LocationChoices {
+    isChecked: boolean
+    locationId: number
+    userId: number
 }

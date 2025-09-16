@@ -15,9 +15,9 @@ export const BookingsContext = createContext<BookingsContextType | undefined>(
 )
 
 export const BookingsProvider = ({ children }: Props) => {
-    const [booking, setBooking] = useState({})
+    const [booking, setBooking] = useState<Booking | undefined>(undefined)
 
-    const getBookings = (id: string): Promise<any> => {
+    const getBookings = (id: string): Promise<Response> => {
         return fetch(
             `http://localhost:8088/bookings?_expand=user&_expand=location&_expand=eventType&userId=${id}`
         ).then(res => res.json())

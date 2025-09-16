@@ -1,22 +1,25 @@
-import React, { useContext, useEffect, useState } from "react"
-import { ArtistsContext } from "../artists/ArtistsProvider.js"
-import { LocationsContext } from "../locatioins/LocationsProvider.js"
+import React, { useEffect, useState } from "react"
+import { useArtists } from "../artists/ArtistsProvider.js"
+import { useLocations } from "../locations/LocationsProvider.js"
 import { LocationsCheckbox } from "./LocationsCheckbox.js"
 import { useNavigate } from "react-router-dom"
-import { UserContext } from "../../views/UserProvider.js"
+import { useUser } from "../../views/UserProvider.js"
+import type { Artists } from "@/types/ArtistTypes.js"
+import type { LocationChoices } from "@/types/LocationTypes.js"
 
 export const Register = () => {
-    const [newUser, setNewUser] = useState({
+    const [newUser, setNewUser] = useState<Artists>({
         name: "",
         email: "",
         imageUrl: ""
     })
 
-    const { addArtist, getArtists, artists } = useContext(ArtistsContext)
-    const { locations, getLocations, addArtistLocation } =
-        useContext(LocationsContext)
-    const { setCurrentUser } = useContext(UserContext)
-    const [artistLocationChoices, setArtistLocationChoices] = useState([])
+    const { addArtist, getArtists, artists } = useArtists()
+    const { locations, getLocations, addArtistLocation } = useLocations()
+    const { setCurrentUser } = useUser()
+    const [artistLocationChoices, setArtistLocationChoices] = useState<
+        LocationChoices[] | undefined
+    >(undefined)
 
     const navigate = useNavigate()
 
@@ -28,7 +31,7 @@ export const Register = () => {
     // setup state for all possible choices for locations
 
     useEffect(() => {
-        const choiceOptions = locations.map(l => {
+        const choiceOptions: LocationChoices[] = locations.map(l => {
             return {
                 isChecked: false,
                 locationId: l.id,
@@ -39,13 +42,14 @@ export const Register = () => {
         setArtistLocationChoices(choiceOptions)
     }, [locations, artists])
 
-    const handleChange = e => {
-        const copyUser = { ...newUser }
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const copyUser: Artists = { ...newUser }
+
         copyUser[e.target.id] = e.target.value
         setNewUser(copyUser)
     }
 
-    const handleClick = e => {
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
 
         if (
@@ -56,31 +60,33 @@ export const Register = () => {
             window.alert("fill out the form")
         } else {
             addArtist(newUser)
-        }
 
-        const filteredLocations = artistLocationChoices.filter(l => {
-            return l.isChecked === true
-        })
+            const filteredLocations = artistLocationChoices?.filter(l => {
+                return l.isChecked === true
+            })
 
-        console.log(filteredLocations)
+            // create data for artist location post
+            const locationData = filteredLocations.map(l => {
+                return {
+                    locationId: l.locationId,
+                    userId: l.userId
+                }
+            })
 
-        // create data for artist location post
-        const locationData = filteredLocations.map(l => {
-            return {
-                locationId: l.locationId,
-                userId: l.userId
+            // for each post the data
+            if (locationData !== undefined) {
+                locationData.forEach(data => {
+                    addArtistLocation(data)
+                })
+
+                localStorage.setItem(
+                    "currentUserId",
+                    String(locationData[0].userId)
+                )
+                setCurrentUser(locationData[0].userId)
+                navigate(`/artists/${locationData[0].userId}`)
             }
-        })
-
-        // for each post the data
-
-        locationData.forEach(data => {
-            addArtistLocation(data)
-        })
-
-        localStorage.setItem("currentUserId", locationData[0].userId)
-        setCurrentUser(locationData[0].userId)
-        navigate(`/artists/${locationData[0].userId}`)
+        }
     }
 
     return (
@@ -134,7 +140,6 @@ export const Register = () => {
                 {locations.map(l => (
                     <LocationsCheckbox
                         key={l.id}
-                        // artists={artists}
                         artistLocationChoices={artistLocationChoices}
                         setArtistLocationChoices={setArtistLocationChoices}
                         location={l}

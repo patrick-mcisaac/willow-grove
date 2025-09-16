@@ -1,13 +1,23 @@
-import React, { useContext } from "react"
+import React from "react"
 import { useBookings } from "./BookingsProvider.js"
 import { useNavigate, useParams } from "react-router-dom"
-import { UserContext } from "../../views/UserProvider.js"
+import { useUser } from "../../views/UserProvider.js"
+import type {
+    BookingsContextType,
+    BookingsExpanded
+} from "@/types/BookingsTypes.js"
 
-export const BookingsList = ({ booking, setBookings, getBookings }) => {
+interface Props {
+    booking: BookingsExpanded
+    setBookings: React.Dispatch<React.SetStateAction<BookingsExpanded[]>>
+    getBookings: BookingsContextType
+}
+
+export const BookingsList = ({ booking, setBookings, getBookings }: Props) => {
     const navigate = useNavigate()
     const { removeBooking } = useBookings()
     const { id } = useParams()
-    const { currentUser } = useContext(UserContext)
+    const { currentUser } = useUser()
     return (
         <div className="relative flex flex-col items-center">
             <div className="shadow-blue border-light-blue flex h-[8rem] w-[30rem] flex-col justify-evenly rounded-2xl border-[.1rem] shadow-md">
@@ -19,6 +29,10 @@ export const BookingsList = ({ booking, setBookings, getBookings }) => {
                         {booking.location.city}
                     </p>
                 </div>
+
+                {/* Booking  needs expanded maybe add an extra call and state?
+                or i can check and see where it was coming from
+                */}
                 <p className="text-center text-[1.3rem] font-semibold">
                     {booking.eventType.name}
                 </p>
@@ -39,7 +53,7 @@ export const BookingsList = ({ booking, setBookings, getBookings }) => {
                         onClick={() => {
                             return (
                                 removeBooking(booking.id),
-                                getBookings(parseInt(id)).then(setBookings)
+                                getBookings(id).then(setBookings)
                             )
                         }}
                         className="fa-regular fa-trash-can cursor-pointer text-[2.5rem] transition hover:scale-105 hover:text-red-500"

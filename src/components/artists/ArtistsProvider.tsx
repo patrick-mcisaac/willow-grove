@@ -14,7 +14,7 @@ export const ArtistsContext = createContext<ArtistContextType | undefined>(
 )
 
 export const ArtistsProvider = ({ children }: Props) => {
-    const [artists, setArtists] = useState<Artists[]>([])
+    const [artists, setArtists] = useState<Artists[] | undefined>(undefined)
 
     const [artistLocations, setArtistLocations] = useState<ArtistLocations[]>(
         []

@@ -1,7 +1,12 @@
+import type { Artists } from "@/types/ArtistTypes"
 import React from "react"
 import { useNavigate } from "react-router-dom"
 
-export const ArtistsList = ({ artist }) => {
+interface Props {
+    artist: Artists
+}
+
+export const ArtistsList = ({ artist }: Props) => {
     const navigate = useNavigate()
 
     return (

@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from "react"
-import { ArtistsContext } from "./ArtistsProvider.js"
+import React, { useEffect } from "react"
+import { useArtists } from "./ArtistsProvider.js"
 import { ArtistsList } from "./ArtistsList.js"
 
 export const Artists = () => {
-    const { artists, getArtists } = useContext(ArtistsContext)
+    const { artists, getArtists } = useArtists()
 
     useEffect(() => {
         getArtists()
@@ -14,7 +14,7 @@ export const Artists = () => {
                 Our Artists
             </h1>
             <div className="flex flex-wrap items-center justify-around gap-y-[5rem]">
-                {artists.map(a => (
+                {artists?.map(a => (
                     <ArtistsList key={a.id} artist={a} />
                 ))}
             </div>

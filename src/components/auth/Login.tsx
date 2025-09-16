@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useState } from "react"
-import { ArtistsContext } from "../artists/ArtistsProvider.js"
+import React, { useEffect, useState } from "react"
+import { useArtists } from "../artists/ArtistsProvider.js"
 import { useNavigate } from "react-router-dom"
-import { UserContext } from "../../views/UserProvider.js"
+import { useUser } from "../../views/UserProvider.js"
 
 export const Login = () => {
     const [userLogin, setUserLogin] = useState({
         email: ""
     })
 
-    const { artists, getArtists } = useContext(ArtistsContext)
-    const { setCurrentUser } = useContext(UserContext)
+    const { artists, getArtists } = useArtists()
+    const { setCurrentUser } = useUser()
 
     const navigate = useNavigate()
 
@@ -28,7 +28,7 @@ export const Login = () => {
         const found = artists.find(a => a.email === userLogin.email)
 
         if (found) {
-            localStorage.setItem("currentUserId", found.id)
+            localStorage.setItem("currentUserId", String(found.id))
             setUserLogin({ email: "" })
             setCurrentUser(found.id)
             navigate(`/artists/${found.id}`)

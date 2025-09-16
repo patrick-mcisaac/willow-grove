@@ -3,26 +3,28 @@ import React, { useContext, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { useBookings } from "./BookingsProvider"
 import { useEvents } from "../events/EventsProvider"
-import { ArtistsContext } from "../artists/ArtistsProvider"
+import { useArtists } from "../artists/ArtistsProvider"
 
 export const AddBooking = () => {
     const { id } = useParams()
 
     const { booking, setBooking, addBooking } = useBookings()
     const { getEvents, events } = useEvents()
-    const { artistLocations, getArtistsLocations } = useContext(ArtistsContext)
+    const { artistLocations, getArtistsLocations } = useArtists()
 
     const navigate = useNavigate()
 
     useEffect(() => {
-        getEvents()
-        getArtistsLocations(parseInt(id))
-        setBooking({
-            userId: parseInt(id),
-            eventTypeId: 0,
-            locationId: 0,
-            date: ""
-        })
+        if (id) {
+            getEvents()
+            getArtistsLocations(id)
+            setBooking({
+                userId: parseInt(id),
+                eventTypeId: 0,
+                locationId: 0,
+                date: ""
+            })
+        }
     }, [])
 
     const handleChange = e => {
@@ -41,10 +43,10 @@ export const AddBooking = () => {
         e.preventDefault()
 
         if (
-            booking.date === "" ||
-            booking.eventTypeId === 0 ||
-            booking.locationId === 0 ||
-            booking.userId === 0
+            booking?.date === "" ||
+            booking?.eventTypeId === 0 ||
+            booking?.locationId === 0 ||
+            booking?.userId === 0
         ) {
             window.alert("fill out the form")
         } else {
@@ -68,7 +70,7 @@ export const AddBooking = () => {
                 <select
                     className="shadow-dark w-full cursor-pointer rounded-2xl p-1 pl-2 shadow-sm"
                     onChange={handleChange}
-                    value={booking.eventTypeId}
+                    value={booking?.eventTypeId}
                     name="eventTypeId"
                     id="event"
                 >
@@ -88,7 +90,7 @@ export const AddBooking = () => {
                 <select
                     className="shadow-dark w-full cursor-pointer rounded-2xl p-1 pl-2 shadow-sm"
                     onChange={handleChange}
-                    value={booking.locationId}
+                    value={booking?.locationId}
                     name="locationId"
                     id="city"
                 >
@@ -107,7 +109,7 @@ export const AddBooking = () => {
                 <input
                     className="shadow-dark w-full cursor-pointer rounded-2xl p-1 pl-2 shadow-sm"
                     onChange={handleDate}
-                    value={booking.date}
+                    value={booking?.date}
                     type="date"
                     name="date"
                     id="date"

@@ -1,17 +1,26 @@
+import type { LocationChoices, Locations } from "@/types/LocationTypes"
 import React, { useEffect, useState } from "react"
+
+interface Props {
+    location: Locations
+    artistLocationChoices: LocationChoices
+    setArtistLocationChoices: React.Dispatch<
+        React.SetStateAction<LocationChoices[]>
+    >
+}
 
 export const LocationsCheckbox = ({
     location,
     artistLocationChoices,
     setArtistLocationChoices
-}) => {
+}: Props) => {
     const [checked, setChecked] = useState(false)
 
     useEffect(() => {
         if (checked) {
             const copyLocationChoices = [...artistLocationChoices]
 
-            const found = copyLocationChoices.map(l => {
+            const found: LocationChoices[] = copyLocationChoices.map(l => {
                 if (l.locationId === location.id) {
                     l.isChecked = true
                 }

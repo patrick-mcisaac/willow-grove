@@ -1,13 +1,13 @@
-import React, { useContext, useEffect } from "react"
-import { EventsContext, useEvents } from "../events/EventsProvider.js"
-import { BookingsContext, useBookings } from "./BookingsProvider.js"
+import React, { useEffect } from "react"
+import { useEvents } from "../events/EventsProvider.js"
+import { useBookings } from "./BookingsProvider.js"
 import { useNavigate, useParams } from "react-router-dom"
-import { ArtistsContext } from "../artists/ArtistsProvider.js"
+import { useArtists } from "../artists/ArtistsProvider.js"
 
 export const EditBooking = () => {
     const { getEvents, events } = useEvents()
     const { booking, editBooking, setBooking, getBookingById } = useBookings()
-    const { artistLocations, getArtistsLocations } = useContext(ArtistsContext)
+    const { artistLocations, getArtistsLocations } = useArtists()
 
     const { id, bookingId } = useParams()
 
@@ -51,7 +51,7 @@ export const EditBooking = () => {
                 <select
                     className="shadow-dark w-full cursor-pointer rounded-2xl p-1 pl-2 shadow-sm"
                     onChange={handleChange}
-                    value={booking.eventTypeId}
+                    value={booking?.eventTypeId}
                     name="eventTypeId"
                     id="event"
                 >
@@ -71,7 +71,7 @@ export const EditBooking = () => {
                 <select
                     className="shadow-dark w-full cursor-pointer rounded-2xl p-1 pl-2 shadow-sm"
                     onChange={handleChange}
-                    value={booking.locationId}
+                    value={booking?.locationId}
                     name="locationId"
                     id="city"
                 >
@@ -90,7 +90,7 @@ export const EditBooking = () => {
                 <input
                     className="shadow-dark w-full cursor-pointer rounded-2xl p-1 pl-2 shadow-sm"
                     onChange={handleDate}
-                    value={booking.date}
+                    value={booking?.date}
                     type="date"
                     name="date"
                     id="date"
