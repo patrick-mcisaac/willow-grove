@@ -1,6 +1,5 @@
-import { createContext, useState } from "react"
-
-export const EventsContext = createContext()
+import { useState } from "react"
+import { EventsContext } from "./EventsContext"
 
 export const EventsProvider = ({ children }) => {
     const [events, setEvents] = useState([])
