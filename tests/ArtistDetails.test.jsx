@@ -2,9 +2,9 @@ import { render, screen } from "@testing-library/react"
 import React, { act } from "react"
 import "@testing-library/jest-dom/vitest"
 import { it, expect, describe, vi } from "vitest"
-import { ArtistsContext } from "../src/components/artists/ArtistsProvider"
 import { ArtistDetails } from "../src/components/artists/ArtistDetails"
 import { MemoryRouter, Route, Routes } from "react-router-dom"
+import { ArtistsContext } from "../src/components/artists/ArtistContext"
 
 const createTestWrapper = (contextValues = {}) => {
     const {

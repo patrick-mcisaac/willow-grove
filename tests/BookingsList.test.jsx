@@ -4,8 +4,8 @@ import "@testing-library/jest-dom/vitest"
 import { it, expect, describe, vi, beforeEach } from "vitest"
 import { BookingsList } from "../src/components/Bookings/BookingsList"
 import { MemoryRouter, Route, Routes } from "react-router-dom"
-import { UserContext } from "../src/views/UserProvider"
-import { BookingsContext } from "../src/components/Bookings/BookingsProvider"
+import { BookingsContext } from "../src/components/Bookings/BookingsContext"
+import { UserContext } from "../src/views/UserContext"
 
 const createWrapper = (contextValues = {}) => {
     const {

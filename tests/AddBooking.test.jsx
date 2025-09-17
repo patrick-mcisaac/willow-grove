@@ -3,10 +3,11 @@ import React from "react"
 import "@testing-library/jest-dom/vitest"
 import { it, expect, describe, vi, afterEach } from "vitest"
 import { AddBooking } from "../src/components/Bookings/AddBooking"
-import { ArtistsContext } from "../src/components/artists/ArtistsProvider"
-import { EventsContext } from "../src/components/events/EventsProvider"
-import { BookingsContext } from "../src/components/Bookings/BookingsProvider"
+
 import { MemoryRouter } from "react-router-dom"
+import { ArtistsContext } from "../src/components/artists/ArtistContext"
+import { EventsContext } from "../src/components/events/EventsContext"
+import { BookingsContext } from "../src/components/Bookings/BookingsContext"
 
 const createWrapper = (contextValues = {}) => {
     const {

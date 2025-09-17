@@ -3,8 +3,7 @@ import React from "react"
 import "@testing-library/jest-dom/vitest"
 import { it, expect, describe, vi } from "vitest"
 import { Artists } from "../src/components/artists/Artists"
-import { ArtistsList } from "../src/components/artists/ArtistsList"
-import { ArtistsContext } from "../src/components/artists/ArtistsProvider"
+import { ArtistsContext } from "../src/components/artists/ArtistContext"
 
 const createTestWrapper = (contextValues = {}) => {
     const {
