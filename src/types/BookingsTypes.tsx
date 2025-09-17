@@ -9,11 +9,14 @@ export interface Booking {
 export interface BookingsContextType {
     booking: Booking | undefined
     setBooking: React.Dispatch<React.SetStateAction<Booking | undefined>>
-    getBookings: (id: string) => Promise<Response>
-    removeBooking: (id: string) => void
-    getBookingById: (id: string) => void
+    getBookings: (id: string | undefined) => Promise<any>
+    removeBooking: (id: number) => void
+    getBookingById: (id: string | undefined) => void
     addBooking: (data: Booking) => Promise<Response>
-    editBooking: (id: string, data: Booking) => Promise<Response>
+    editBooking: (
+        id: string | undefined,
+        data: Booking | undefined
+    ) => Promise<Response>
 }
 
 export interface BookingsExpanded {

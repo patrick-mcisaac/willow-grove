@@ -9,8 +9,10 @@ import type {
 
 interface Props {
     booking: BookingsExpanded
-    setBookings: React.Dispatch<React.SetStateAction<BookingsExpanded[]>>
-    getBookings: BookingsContextType
+    setBookings: React.Dispatch<
+        React.SetStateAction<BookingsExpanded[] | undefined>
+    >
+    getBookings: (id: string | undefined) => Promise<any>
 }
 
 export const BookingsList = ({ booking, setBookings, getBookings }: Props) => {
@@ -30,14 +32,14 @@ export const BookingsList = ({ booking, setBookings, getBookings }: Props) => {
                     </p>
                 </div>
 
-                {/* Booking  needs expanded maybe add an extra call and state?
-                or i can check and see where it was coming from
-                */}
                 <p className="text-center text-[1.3rem] font-semibold">
                     {booking.eventType.name}
                 </p>
             </div>
-            {currentUser === parseInt(id) && (
+            {/* Had to check that id exists before parseInt
+                cant parseInt undefined
+            */}
+            {id && currentUser === parseInt(id) && (
                 <div className="mt-[2rem] flex w-full items-center justify-evenly">
                     <button
                         onClick={() =>

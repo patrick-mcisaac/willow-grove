@@ -16,7 +16,7 @@ export const EditBooking = () => {
     useEffect(() => {
         getEvents()
         getBookingById(bookingId)
-        getArtistsLocations(parseInt(id))
+        getArtistsLocations(id)
     }, [])
 
     // handle change to setBooking to new values

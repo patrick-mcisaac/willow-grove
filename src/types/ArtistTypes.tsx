@@ -17,11 +17,11 @@ export interface ArtistLocations {
 }
 
 export interface ArtistContextType {
-    artists: Artists[] | []
+    artists: Artists[] | undefined
     artistLocations: ArtistLocations[] | []
     getArtists: () => void
     getArtistById: (id: string) => Promise<any>
     addArtist: (data: Artists) => void
     updateArtist: (id: string, data: Artists) => void
-    getArtistsLocations: (id: string) => void
+    getArtistsLocations: (id: string | undefined) => void
 }

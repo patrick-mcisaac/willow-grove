@@ -8,7 +8,9 @@ interface Props {
 export const UserContext = createContext<UserContextType | undefined>(undefined)
 
 export const UserProvider = ({ children }: Props) => {
-    const [currentUser, setCurrentUser] = useState<number | null>(null)
+    const [currentUser, setCurrentUser] = useState<number | undefined>(
+        undefined
+    )
 
     return (
         <UserContext.Provider value={{ currentUser, setCurrentUser }}>

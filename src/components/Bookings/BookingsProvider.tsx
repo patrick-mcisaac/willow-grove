@@ -17,19 +17,19 @@ export const BookingsContext = createContext<BookingsContextType | undefined>(
 export const BookingsProvider = ({ children }: Props) => {
     const [booking, setBooking] = useState<Booking | undefined>(undefined)
 
-    const getBookings = (id: string): Promise<Response> => {
+    const getBookings = (id: string | undefined): Promise<any> => {
         return fetch(
             `http://localhost:8088/bookings?_expand=user&_expand=location&_expand=eventType&userId=${id}`
         ).then(res => res.json())
     }
 
-    const removeBooking = (id: string): void => {
+    const removeBooking = (id: number): void => {
         fetch(`http://localhost:8088/bookings/${id}`, {
             method: "DELETE"
         })
     }
 
-    const getBookingById = (id: string): void => {
+    const getBookingById = (id: string | undefined): void => {
         fetch(`http://localhost:8088/bookings/${id}`)
             .then(res => res.json())
             .then(setBooking)
@@ -45,7 +45,10 @@ export const BookingsProvider = ({ children }: Props) => {
         })
     }
 
-    const editBooking = (id: string, data: Booking): Promise<Response> => {
+    const editBooking = (
+        id: string | undefined,
+        data: Booking | undefined
+    ): Promise<Response> => {
         return fetch(`http://localhost:8088/bookings/${id}`, {
             method: "PUT",
             headers: {

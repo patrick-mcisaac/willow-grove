@@ -26,7 +26,7 @@ export const Bookings = () => {
                 Upcoming Gigs
             </h2>
 
-            {currentUser === parseInt(id) && (
+            {id && currentUser === parseInt(id) && (
                 <button
                     onClick={() =>
                         navigate(`/artists/${currentUser}/booking/add`)

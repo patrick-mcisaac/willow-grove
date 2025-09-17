@@ -52,7 +52,7 @@ export const ArtistsProvider = ({ children }: Props) => {
         })
     }
 
-    const getArtistsLocations = (id: string) => {
+    const getArtistsLocations = (id: string | undefined) => {
         fetch(
             `http://localhost:8088/artistLocations?userId=${id}&_expand=location`
         )
