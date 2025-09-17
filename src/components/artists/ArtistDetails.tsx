@@ -12,7 +12,7 @@ export const ArtistDetails = () => {
 
     const { getArtistById, deleteArtist } = useArtists()
 
-    const { setCurrentUser } = useUser()
+    const { currentUser, setCurrentUser } = useUser()
 
     const navigate = useNavigate()
 
@@ -48,13 +48,14 @@ export const ArtistDetails = () => {
             />
 
             <Bookings />
-
-            <button
-                onClick={handleDelete}
-                className="shadow-dark text-dark hover:text-light mt-[3rem] h-[3rem] w-[10rem] cursor-pointer rounded-2xl bg-red-400 font-bold tracking-wider shadow-sm transition hover:scale-105 hover:bg-red-500"
-            >
-                Delete Profile
-            </button>
+            {id && currentUser === parseInt(id) && (
+                <button
+                    onClick={handleDelete}
+                    className="shadow-dark text-dark hover:text-light mt-[3rem] h-[3rem] w-[10rem] cursor-pointer rounded-2xl bg-red-400 font-bold tracking-wider shadow-sm transition hover:scale-105 hover:bg-red-500"
+                >
+                    Delete Profile
+                </button>
+            )}
         </div>
     )
 }

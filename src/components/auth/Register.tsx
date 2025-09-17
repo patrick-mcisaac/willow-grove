@@ -4,11 +4,11 @@ import { useLocations } from "../locations/LocationsProvider.js"
 import { LocationsCheckbox } from "./LocationsCheckbox.js"
 import { useNavigate } from "react-router-dom"
 import { useUser } from "../../views/UserProvider.js"
-import type { Artists } from "@/types/ArtistTypes.js"
+import type { ArtistRegistration, Artists } from "@/types/ArtistTypes.js"
 import type { LocationChoices } from "@/types/LocationTypes.js"
 
 export const Register = () => {
-    const [newUser, setNewUser] = useState<Artists>({
+    const [newUser, setNewUser] = useState<ArtistRegistration>({
         name: "",
         email: "",
         imageUrl: ""
@@ -18,8 +18,8 @@ export const Register = () => {
     const { locations, getLocations, addArtistLocation } = useLocations()
     const { setCurrentUser } = useUser()
     const [artistLocationChoices, setArtistLocationChoices] = useState<
-        LocationChoices[] | undefined
-    >(undefined)
+        LocationChoices[] | []
+    >([])
 
     const navigate = useNavigate()
 
@@ -44,13 +44,13 @@ export const Register = () => {
     }, [locations, artists])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const copyUser: Artists = { ...newUser }
+        const copyUser: ArtistRegistration = { ...newUser }
 
-        copyUser[e.target.id] = e.target.value
+        copyUser[e.target.id as keyof ArtistRegistration] = e.target.value
         setNewUser(copyUser)
     }
 
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
 
         if (
@@ -60,7 +60,7 @@ export const Register = () => {
         ) {
             window.alert("fill out the form")
         } else {
-            addArtist(newUser)
+            await addArtist(newUser)
 
             const filteredLocations = artistLocationChoices?.filter(l => {
                 return l.isChecked === true

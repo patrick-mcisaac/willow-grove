@@ -32,8 +32,9 @@ export const ArtistsProvider = ({ children }: Props) => {
         )
     }
 
-    const addArtist = (data: Artists) => {
-        fetch(`http://localhost:8088/users`, {
+    const addArtist = async (data: Artists) => {
+        // adding return
+        await fetch(`http://localhost:8088/users`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

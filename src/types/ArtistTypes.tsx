@@ -26,3 +26,9 @@ export interface ArtistContextType {
     getArtistsLocations: (id: string | undefined) => void
     deleteArtist: (id: string) => Promise<void>
 }
+
+export interface ArtistRegistration {
+    name: string
+    email: string
+    imageUrl: string
+}

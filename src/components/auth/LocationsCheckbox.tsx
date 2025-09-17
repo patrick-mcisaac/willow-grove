@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react"
 
 interface Props {
     location: Locations
-    artistLocationChoices: LocationChoices[] | undefined
+    artistLocationChoices: LocationChoices[] | []
     setArtistLocationChoices: React.Dispatch<
-        React.SetStateAction<LocationChoices[] | undefined>
+        React.SetStateAction<LocationChoices[] | []>
     >
 }
 
