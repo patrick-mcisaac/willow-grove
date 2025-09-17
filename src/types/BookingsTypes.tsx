@@ -10,9 +10,9 @@ export interface BookingsContextType {
     booking: Booking | undefined
     setBooking: React.Dispatch<React.SetStateAction<Booking | undefined>>
     getBookings: (id: string | undefined) => Promise<any>
-    removeBooking: (id: number) => void
+    removeBooking: (id: number) => Promise<Response>
     getBookingById: (id: string | undefined) => void
-    addBooking: (data: Booking) => Promise<Response>
+    addBooking: (data: Booking | undefined) => Promise<Response>
     editBooking: (
         id: string | undefined,
         data: Booking | undefined

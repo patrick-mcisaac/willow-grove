@@ -23,8 +23,8 @@ export const BookingsProvider = ({ children }: Props) => {
         ).then(res => res.json())
     }
 
-    const removeBooking = (id: number): void => {
-        fetch(`http://localhost:8088/bookings/${id}`, {
+    const removeBooking = (id: number): Promise<Response> => {
+        return fetch(`http://localhost:8088/bookings/${id}`, {
             method: "DELETE"
         })
     }
@@ -35,7 +35,7 @@ export const BookingsProvider = ({ children }: Props) => {
             .then(setBooking)
     }
 
-    const addBooking = (data: Booking): Promise<Response> => {
+    const addBooking = (data: Booking | undefined): Promise<Response> => {
         return fetch(`http://localhost:8088/bookings`, {
             method: "POST",
             headers: {

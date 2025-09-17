@@ -34,8 +34,18 @@ export const EditBooking = () => {
 
     const handleSave = e => {
         e.preventDefault()
-        editBooking(bookingId, booking)
-        navigate(`/artists/${id}`)
+        if (
+            booking?.date === "" ||
+            booking?.eventTypeId === 0 ||
+            booking?.locationId === 0 ||
+            booking?.userId === 0
+        ) {
+            window.alert("fill out the form")
+        } else {
+            editBooking(bookingId, booking).then(() => {
+                navigate(`/artists/${id}`)
+            })
+        }
     }
     return (
         <form

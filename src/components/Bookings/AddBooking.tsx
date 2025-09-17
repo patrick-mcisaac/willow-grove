@@ -50,9 +50,7 @@ export const AddBooking = () => {
         ) {
             window.alert("fill out the form")
         } else {
-            addBooking(booking)
-
-            navigate(`/artists/${id}`)
+            addBooking(booking).then(() => navigate(`/artists/${id}`))
         }
     }
 

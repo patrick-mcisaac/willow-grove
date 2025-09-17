@@ -20,6 +20,11 @@ export const BookingsList = ({ booking, setBookings, getBookings }: Props) => {
     const { removeBooking } = useBookings()
     const { id } = useParams()
     const { currentUser } = useUser()
+
+    const handleDelete = async () => {
+        await removeBooking(booking.id)
+        await getBookings(id).then(setBookings)
+    }
     return (
         <div className="relative flex flex-col items-center">
             <div className="shadow-blue border-light-blue flex h-[8rem] w-[30rem] flex-col justify-evenly rounded-2xl border-[.1rem] shadow-md">
@@ -28,7 +33,7 @@ export const BookingsList = ({ booking, setBookings, getBookings }: Props) => {
                         {booking.date}
                     </p>
                     <p className="text-[1.5rem] font-semibold">
-                        {booking.location.city}
+                        {booking.location?.city}
                     </p>
                 </div>
 
@@ -52,12 +57,7 @@ export const BookingsList = ({ booking, setBookings, getBookings }: Props) => {
                         Edit
                     </button>
                     <i
-                        onClick={() => {
-                            return (
-                                removeBooking(booking.id),
-                                getBookings(id).then(setBookings)
-                            )
-                        }}
+                        onClick={handleDelete}
                         className="fa-regular fa-trash-can cursor-pointer text-[2.5rem] transition hover:scale-105 hover:text-red-500"
                     ></i>
                 </div>
