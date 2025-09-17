@@ -9,11 +9,11 @@ export const Artists = () => {
         getArtists()
     }, [])
     return (
-        <div className="flex flex-col items-center gap-[3rem] p-10">
+        <div className="flex flex-col items-center gap-[5rem] p-[5rem]">
             <h1 className="text-[5rem] font-bold tracking-wider">
                 Our Artists
             </h1>
-            <div className="flex flex-wrap items-center justify-around gap-y-[5rem]">
+            <div className="flex flex-wrap items-center justify-around gap-[5rem_4rem]">
                 {artists.map(a => (
                     <ArtistsList key={a.id} artist={a} />
                 ))}
