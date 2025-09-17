@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react"
-import { ArtistsContext } from "./ArtistsProvider"
+
 import { ArtistsList } from "./ArtistsList"
+import { ArtistsContext } from "./ArtistContext"
 
 export const Artists = () => {
     const { artists, getArtists } = useContext(ArtistsContext)

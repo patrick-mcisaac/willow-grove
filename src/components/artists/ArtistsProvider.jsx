@@ -1,6 +1,5 @@
-import { createContext, useState } from "react"
-
-export const ArtistsContext = createContext()
+import { useState } from "react"
+import { ArtistsContext } from "./ArtistContext"
 
 export const ArtistsProvider = ({ children }) => {
     const [artists, setArtists] = useState([])
