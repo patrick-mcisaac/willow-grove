@@ -1,5 +1,5 @@
 import type { UserContextType } from "@/types/UserTypes"
-import React, { createContext, useContext, useEffect, useState } from "react"
+import React, { createContext, useContext, useState } from "react"
 
 interface Props {
     children: React.ReactNode

@@ -1,10 +1,5 @@
 import type { Booking, BookingsContextType } from "@/types/BookingsTypes"
-import React, {
-    createContext,
-    useContext,
-    useState,
-    type ReactNode
-} from "react"
+import React, { createContext, useContext, useState } from "react"
 
 interface Props {
     children: React.ReactNode
