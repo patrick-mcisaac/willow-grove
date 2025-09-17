@@ -12,7 +12,7 @@ export const BookingsProvider = ({ children }) => {
     }
 
     const removeBooking = id => {
-        fetch(`http://localhost:8088/bookings/${id}`, {
+        return fetch(`http://localhost:8088/bookings/${id}`, {
             method: "DELETE"
         })
     }

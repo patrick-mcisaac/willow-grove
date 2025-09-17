@@ -8,6 +8,11 @@ export const BookingsList = ({ booking, setBookings, getBookings }) => {
     const { removeBooking } = useContext(BookingsContext)
     const { id } = useParams()
     const { currentUser } = useContext(UserContext)
+
+    const handleDelete = async () => {
+        await removeBooking(booking.id)
+        await getBookings(parseInt(id)).then(setBookings)
+    }
     return (
         <div className="relative flex flex-col items-center">
             <div className="shadow-blue border-light-blue flex h-[8rem] w-[30rem] flex-col justify-evenly rounded-2xl border-[.1rem] shadow-md">
@@ -36,12 +41,7 @@ export const BookingsList = ({ booking, setBookings, getBookings }) => {
                         Edit
                     </button>
                     <i
-                        onClick={() => {
-                            return (
-                                removeBooking(booking.id),
-                                getBookings(parseInt(id)).then(setBookings)
-                            )
-                        }}
+                        onClick={handleDelete}
                         className="fa-regular fa-trash-can cursor-pointer text-[2.5rem] transition hover:scale-105 hover:text-red-500"
                     ></i>
                 </div>
