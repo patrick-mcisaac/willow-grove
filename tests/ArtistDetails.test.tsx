@@ -5,6 +5,7 @@ import { it, expect, describe, vi } from "vitest"
 import { ArtistsContext } from "../src/components/artists/ArtistsProvider"
 import { ArtistDetails } from "../src/components/artists/ArtistDetails"
 import { MemoryRouter, Route, Routes } from "react-router-dom"
+import { UserContext } from "../src/views/UserProvider"
 
 interface Props {
     children: React.ReactNode
@@ -24,14 +25,21 @@ const createTestWrapper = (contextValues = {}) => {
             }),
             addArtist: vi.fn(),
             updateArtist: vi.fn(),
-            getArtistLocations: vi.fn()
+            getArtistLocations: vi.fn(),
+            deleteArtist: vi.fn()
+        },
+        UserValues = {
+            currentUser: 1,
+            setCurrentUser: vi.fn()
         }
     } = contextValues
 
     return ({ children }: Props) => (
-        <ArtistsContext.Provider value={ArtistValues}>
-            {children}
-        </ArtistsContext.Provider>
+        <UserContext.Provider value={UserValues}>
+            <ArtistsContext.Provider value={ArtistValues}>
+                {children}
+            </ArtistsContext.Provider>
+        </UserContext.Provider>
     )
 }
 vi.mock("../src/components/Bookings/Bookings", () => {

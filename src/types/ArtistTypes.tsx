@@ -24,4 +24,5 @@ export interface ArtistContextType {
     addArtist: (data: Artists) => void
     updateArtist: (id: string, data: Artists) => void
     getArtistsLocations: (id: string | undefined) => void
+    deleteArtist: (id: string) => Promise<void>
 }
