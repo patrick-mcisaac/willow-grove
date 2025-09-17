@@ -14,25 +14,6 @@ const createTestWrapper = (contextValues = {}) => {
                 email: "test email",
                 url: "test url"
             })
-        },
-        BookingValues = {
-            removeBooking: vi.fn(),
-            getBookingById: vi.fn(),
-            addBooking: vi.fn(),
-            editBooking: vi.fn(),
-            getBookings: vi.fn().mockResolvedValue([
-                {
-                    id: 1,
-                    userId: 1,
-                    eventTypeId: 1,
-                    locationId: 1,
-                    date: "test"
-                }
-            ]),
-            setBooking: vi.fn()
-        },
-        UserValues = {
-            currentUser: 1
         }
     } = contextValues
 
