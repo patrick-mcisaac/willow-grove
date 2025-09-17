@@ -4,6 +4,7 @@ import "@testing-library/jest-dom/vitest"
 import { it, expect, describe, vi } from "vitest"
 import { ArtistsContext } from "../src/components/artists/ArtistsProvider"
 import { ArtistDetails } from "../src/components/artists/ArtistDetails"
+import { MemoryRouter, Route, Routes } from "react-router-dom"
 
 const createTestWrapper = (contextValues = {}) => {
     const {
@@ -33,7 +34,18 @@ describe("Artist Details Page", () => {
     it("renders an artists details", async () => {
         const TestWrapper = createTestWrapper()
         await act(async () => {
-            render(<ArtistDetails />, { wrapper: TestWrapper })
+            render(
+                <MemoryRouter initialEntries={["/artists/1"]}>
+                    <Routes>
+                        <Route
+                            path="/artists/:id"
+                            element={<ArtistDetails />}
+                        />
+                    </Routes>
+                </MemoryRouter>,
+
+                { wrapper: TestWrapper }
+            )
         })
 
         expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument()
