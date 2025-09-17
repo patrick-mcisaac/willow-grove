@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react"
 import { EventsContext } from "../events/EventsProvider"
-import { BookingsContext } from "./BookingsProvider"
 import { useNavigate, useParams } from "react-router-dom"
 import { ArtistsContext } from "../artists/ArtistContext"
+import { BookingsContext } from "./BookingsContext"
 
 export const EditBooking = () => {
     const { getEvents, events } = useContext(EventsContext)

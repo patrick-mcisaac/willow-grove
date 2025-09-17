@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react"
-import { BookingsContext } from "./BookingsProvider"
 import { EventsContext } from "../events/EventsProvider"
 import { useNavigate, useParams } from "react-router-dom"
 import { ArtistsContext } from "../artists/ArtistContext"
+import { BookingsContext } from "./BookingsContext"
 
 export const AddBooking = () => {
     const { id } = useParams()

@@ -1,6 +1,5 @@
-import { createContext, useState } from "react"
-
-export const BookingsContext = createContext()
+import { useState } from "react"
+import { BookingsContext } from "./BookingsContext"
 
 export const BookingsProvider = ({ children }) => {
     const [booking, setBooking] = useState({})

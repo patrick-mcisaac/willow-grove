@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { BookingsContext } from "./BookingsProvider"
 import { BookingsList } from "./BookingsList"
 import { UserContext } from "../../views/UserProvider"
+import { BookingsContext } from "./BookingsContext"
 
 export const Bookings = () => {
     const [bookings, setBookings] = useState([])
