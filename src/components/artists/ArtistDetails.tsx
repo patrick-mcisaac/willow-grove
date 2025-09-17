@@ -26,7 +26,7 @@ export const ArtistDetails = () => {
         if (id) {
             await deleteArtist(id)
             // logout
-            localStorage.removeItem("currentUser")
+            localStorage.removeItem("currentUserId")
             setCurrentUser(undefined)
             navigate("/")
         }
