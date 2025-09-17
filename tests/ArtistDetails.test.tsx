@@ -4,6 +4,7 @@ import "@testing-library/jest-dom/vitest"
 import { it, expect, describe, vi } from "vitest"
 import { ArtistsContext } from "../src/components/artists/ArtistsProvider"
 import { ArtistDetails } from "../src/components/artists/ArtistDetails"
+import { MemoryRouter, Route, Routes } from "react-router-dom"
 
 interface Props {
     children: React.ReactNode
@@ -12,12 +13,18 @@ interface Props {
 const createTestWrapper = (contextValues = {}) => {
     const {
         ArtistValues = {
+            artists: undefined,
+            artistLocations: [],
+            getArtists: vi.fn(),
             getArtistById: vi.fn().mockResolvedValue({
                 id: 1,
                 name: "test name",
                 email: "test email",
                 imageUrl: "test url"
-            })
+            }),
+            addArtist: vi.fn(),
+            updateArtist: vi.fn(),
+            getArtistLocations: vi.fn()
         }
     } = contextValues
 
@@ -37,8 +44,20 @@ describe("Artist Details Page", () => {
     it("renders an artists details", async () => {
         const TestWrapper = createTestWrapper()
         await act(async () => {
-            render(<ArtistDetails />, { wrapper: TestWrapper })
+            render(
+                <MemoryRouter initialEntries={["/artists/1"]}>
+                    <Routes>
+                        <Route
+                            path="/artists/:id"
+                            element={<ArtistDetails />}
+                        />
+                    </Routes>
+                </MemoryRouter>,
+                { wrapper: TestWrapper }
+            )
         })
+
+        screen.debug()
 
         expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument()
 
