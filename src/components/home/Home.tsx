@@ -1,5 +1,5 @@
 import React, { type JSX } from "react"
-import home from "../../../assets/images/home.jpg"
+import home from "../../assets/images/home.jpg"
 
 export const Home = (): JSX.Element => {
     return (

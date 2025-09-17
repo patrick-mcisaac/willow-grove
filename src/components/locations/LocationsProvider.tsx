@@ -14,7 +14,7 @@ export const LocationsContext = createContext<LocationContextType | undefined>(
 )
 
 export const LocationsProvider = ({ children }: Props) => {
-    const [locations, setLocations] = useState<Locations | []>([])
+    const [locations, setLocations] = useState<Locations[] | []>([])
 
     const getLocations = () => {
         fetch(`http://localhost:8088/locations`)

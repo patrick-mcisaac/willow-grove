@@ -1,9 +1,9 @@
 import React, { useContext } from "react"
 import { Link } from "react-router-dom"
-import { UserContext } from "../../views/UserProvider.js"
+import { useUser } from "../../views/UserProvider.js"
 
 export const NavBar = () => {
-    const { currentUser, setCurrentUser } = useContext(UserContext)
+    const { currentUser, setCurrentUser } = useUser()
 
     return (
         <ul className="text-light flex h-[5rem] w-full items-center justify-around gap-[2rem] border-2 border-black bg-black px-5 md:justify-start">
@@ -28,7 +28,7 @@ export const NavBar = () => {
                         <Link
                             onClick={() => {
                                 localStorage.removeItem("currentUserId")
-                                setCurrentUser(null)
+                                setCurrentUser(undefined)
                             }}
                             to="/"
                             className="font-bold tracking-wider"

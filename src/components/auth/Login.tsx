@@ -25,7 +25,7 @@ export const Login = () => {
 
     const handleLogin = e => {
         e.preventDefault()
-        const found = artists.find(a => a.email === userLogin.email)
+        const found = artists?.find(a => a.email === userLogin.email)
 
         if (found) {
             localStorage.setItem("currentUserId", String(found.id))

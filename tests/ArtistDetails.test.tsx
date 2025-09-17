@@ -5,26 +5,23 @@ import { it, expect, describe, vi } from "vitest"
 import { ArtistsContext } from "../src/components/artists/ArtistsProvider"
 import { ArtistDetails } from "../src/components/artists/ArtistDetails"
 
-const createTestWrapper = (contextValues?: {
-    ArtistValues: {
-        getArtistById: () => Promise<any>
-    }
-}) => {
-    if (!contextValues) {
-        throw new Error("no context")
-    }
+interface Props {
+    children: React.ReactNode
+}
+
+const createTestWrapper = (contextValues = {}) => {
     const {
         ArtistValues = {
             getArtistById: vi.fn().mockResolvedValue({
                 id: 1,
                 name: "test name",
                 email: "test email",
-                url: "test url"
+                imageUrl: "test url"
             })
         }
     } = contextValues
 
-    return ({ children }) => (
+    return ({ children }: Props) => (
         <ArtistsContext.Provider value={ArtistValues}>
             {children}
         </ArtistsContext.Provider>

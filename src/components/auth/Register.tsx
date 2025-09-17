@@ -31,15 +31,16 @@ export const Register = () => {
     // setup state for all possible choices for locations
 
     useEffect(() => {
-        const choiceOptions: LocationChoices[] = locations.map(l => {
-            return {
-                isChecked: false,
-                locationId: l.id,
-                userId: artists.length + 1
-            }
-        })
-
-        setArtistLocationChoices(choiceOptions)
+        if (artists) {
+            const choiceOptions: LocationChoices[] = locations.map(l => {
+                return {
+                    isChecked: false,
+                    locationId: l.id,
+                    userId: artists.length + 1
+                }
+            })
+            setArtistLocationChoices(choiceOptions)
+        }
     }, [locations, artists])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,7 +67,7 @@ export const Register = () => {
             })
 
             // create data for artist location post
-            const locationData = filteredLocations.map(l => {
+            const locationData = filteredLocations?.map(l => {
                 return {
                     locationId: l.locationId,
                     userId: l.userId
@@ -81,10 +82,10 @@ export const Register = () => {
 
                 localStorage.setItem(
                     "currentUserId",
-                    String(locationData[0].userId)
+                    String(locationData[0]?.userId)
                 )
-                setCurrentUser(locationData[0].userId)
-                navigate(`/artists/${locationData[0].userId}`)
+                setCurrentUser(locationData[0]?.userId)
+                navigate(`/artists/${locationData[0]?.userId}`)
             }
         }
     }
