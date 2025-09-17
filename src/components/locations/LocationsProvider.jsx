@@ -1,6 +1,5 @@
-import { createContext, useState } from "react"
-
-export const LocationsContext = createContext()
+import { useState } from "react"
+import { LocationsContext } from "./LocationsContext"
 
 export const LocationsProvider = ({ children }) => {
     const [locations, setLocations] = useState([])
