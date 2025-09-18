@@ -14,7 +14,7 @@ export const Artists = () => {
 
     useEffect(() => {
         setFilteredArtists(artists)
-    }, [])
+    }, [artists])
     return (
         <div className="flex flex-col items-center gap-[5rem] p-[5rem]">
             <h1 className="text-[5rem] font-bold tracking-wider">
