@@ -16,8 +16,8 @@ export const LocationsContext = createContext<LocationContextType | undefined>(
 export const LocationsProvider = ({ children }: Props) => {
     const [locations, setLocations] = useState<Locations[] | []>([])
     const [allArtistsLocations, setAllArtistsLocations] = useState<
-        ArtistLocation[] | undefined
-    >(undefined)
+        ArtistLocation[] | []
+    >([])
 
     const getLocations = () => {
         fetch(`http://localhost:8088/locations`)
