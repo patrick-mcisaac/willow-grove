@@ -24,7 +24,7 @@ export const Artists = () => {
                 setFilteredArtists={setFilteredArtists}
                 artists={artists}
             />
-            <div className="flex flex-wrap items-center justify-around gap-[5rem_4rem]">
+            <div className="flex w-full flex-wrap items-center justify-around gap-[5rem_4rem]">
                 {filteredArtists?.map(a => (
                     <ArtistsList key={a.id} artist={a} />
                 ))}
