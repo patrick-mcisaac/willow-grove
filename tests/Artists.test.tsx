@@ -34,6 +34,12 @@ vi.mock("../src/components/artists/ArtistsList", () => {
     }
 })
 
+vi.mock("../src/components/artists/FilterBar", () => {
+    return {
+        FilterBar: () => <div data-testid="filter"></div>
+    }
+})
+
 describe("Artists", () => {
     it("renders h1 with artists", () => {
         const TestWrapper = createTestWrapper()

@@ -1,3 +1,5 @@
+import type React from "react"
+
 export interface Locations {
     id: number
     city: string
@@ -14,6 +16,11 @@ export interface LocationContextType {
     locations: Locations[] | []
     getLocations: () => void
     addArtistLocation: (data: ArtistLocation) => Promise<Response>
+    allArtistsLocations: ArtistLocation[] | []
+    setAllArtistsLocations: React.Dispatch<
+        React.SetStateAction<ArtistLocation[] | []>
+    >
+    getAllArtistsLocations: () => void
 }
 
 export interface LocationChoices {

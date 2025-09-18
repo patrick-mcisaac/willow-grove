@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { useArtists } from "./ArtistsProvider.js"
 import { Bookings } from "../Bookings/Bookings.js"
-import type { Artists } from "@/types/ArtistTypes.js"
+import type { Artist } from "@/types/ArtistTypes.js"
 import { useUser } from "../../views/UserProvider.js"
 
 export const ArtistDetails = () => {
-    const [artist, setArtist] = useState<Artists | undefined>(undefined)
+    const [artist, setArtist] = useState<Artist | undefined>(undefined)
 
     const { id } = useParams()
 

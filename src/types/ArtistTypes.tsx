@@ -1,4 +1,4 @@
-export interface Artists {
+export interface Artist {
     id?: number
     name: string
     email: string
@@ -17,12 +17,12 @@ export interface ArtistLocations {
 }
 
 export interface ArtistContextType {
-    artists: Artists[] | undefined
+    artists: Artist[] | []
     artistLocations: ArtistLocations[] | []
     getArtists: () => void
     getArtistById: (id: string) => Promise<any>
-    addArtist: (data: Artists) => void
-    updateArtist: (id: string, data: Artists) => void
+    addArtist: (data: Artist) => void
+    updateArtist: (id: string, data: Artist) => void
     getArtistsLocations: (id: string | undefined) => void
     deleteArtist: (id: string) => Promise<void>
 }

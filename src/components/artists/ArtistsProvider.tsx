@@ -1,7 +1,7 @@
 import type {
     ArtistContextType,
     ArtistLocations,
-    Artists
+    Artist
 } from "@/types/ArtistTypes"
 import React, { createContext, useContext, useState } from "react"
 
@@ -14,7 +14,7 @@ export const ArtistsContext = createContext<ArtistContextType | undefined>(
 )
 
 export const ArtistsProvider = ({ children }: Props) => {
-    const [artists, setArtists] = useState<Artists[] | undefined>(undefined)
+    const [artists, setArtists] = useState<Artist[] | []>([])
 
     const [artistLocations, setArtistLocations] = useState<ArtistLocations[]>(
         []
@@ -32,7 +32,7 @@ export const ArtistsProvider = ({ children }: Props) => {
         )
     }
 
-    const addArtist = async (data: Artists) => {
+    const addArtist = async (data: Artist) => {
         // adding return
         await fetch(`http://localhost:8088/users`, {
             method: "POST",
@@ -43,7 +43,7 @@ export const ArtistsProvider = ({ children }: Props) => {
         })
     }
 
-    const updateArtist = (id: string, data: Artists) => {
+    const updateArtist = (id: string, data: Artist) => {
         fetch(`http://localhost:8088/users/${id}`, {
             method: "PUT",
             headers: {

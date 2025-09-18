@@ -15,6 +15,9 @@ export const LocationsContext = createContext<LocationContextType | undefined>(
 
 export const LocationsProvider = ({ children }: Props) => {
     const [locations, setLocations] = useState<Locations[] | []>([])
+    const [allArtistsLocations, setAllArtistsLocations] = useState<
+        ArtistLocation[] | undefined
+    >(undefined)
 
     const getLocations = () => {
         fetch(`http://localhost:8088/locations`)
@@ -32,9 +35,22 @@ export const LocationsProvider = ({ children }: Props) => {
         })
     }
 
+    const getAllArtistsLocations = (): void => {
+        fetch(`http://localhost:8088/artistLocations`)
+            .then(res => res.json())
+            .then(setAllArtistsLocations)
+    }
+
     return (
         <LocationsContext.Provider
-            value={{ locations, getLocations, addArtistLocation }}
+            value={{
+                locations,
+                getLocations,
+                addArtistLocation,
+                allArtistsLocations,
+                setAllArtistsLocations,
+                getAllArtistsLocations
+            }}
         >
             {children}
         </LocationsContext.Provider>

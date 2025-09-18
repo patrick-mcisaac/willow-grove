@@ -1,9 +1,9 @@
-import type { Artists } from "@/types/ArtistTypes"
+import type { Artist } from "@/types/ArtistTypes"
 import React from "react"
 import { useNavigate } from "react-router-dom"
 
 interface Props {
-    artist: Artists
+    artist: Artist
 }
 
 export const ArtistsList = ({ artist }: Props) => {
