@@ -74,7 +74,7 @@ export const FilterBar = ({ setFilteredArtists, artists }: Props) => {
     }
 
     return (
-        <div className="mt-[-2rem] flex w-full items-center justify-evenly gap-[5rem]">
+        <div className="mt-[-2rem] flex w-full items-center justify-evenly gap-[7rem]">
             <select
                 className="shadow-dark w-[20rem] cursor-pointer rounded-2xl p-1 pl-2 shadow-sm"
                 onChange={handleLocationChange}
