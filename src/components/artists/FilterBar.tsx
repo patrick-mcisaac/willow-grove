@@ -3,7 +3,12 @@ import { useLocations } from "../locations/LocationsProvider"
 import type { ArtistLocation } from "@/types/LocationTypes"
 import type { Artist } from "@/types/ArtistTypes"
 
-export const FilterBar = ({ setFilteredArtists, artists }) => {
+interface Props {
+    setFilteredArtists: React.Dispatch<React.SetStateAction<Artist[] | []>>
+    artists: Artist[] | []
+}
+
+export const FilterBar = ({ setFilteredArtists, artists }: Props) => {
     const {
         locations,
         getLocations,
