@@ -27,13 +27,13 @@ export const AddBooking = () => {
         }
     }, [])
 
-    const handleChange = e => {
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const copyBooking = { ...booking }
         copyBooking[e.target.name] = parseInt(e.target.value)
         setBooking(copyBooking)
     }
 
-    const handleDate = e => {
+    const handleDate = (e: React.ChangeEvent<HTMLInputElement>) => {
         const copyBooking = { ...booking }
         copyBooking.date = e.target.value
         setBooking(copyBooking)

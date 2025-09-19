@@ -94,16 +94,21 @@ export const Register = () => {
         <form
             action=""
             name="form"
-            className="mx-auto mt-[5rem] flex w-[20rem] flex-col items-center gap-10"
+            className="mx-auto flex w-[20rem] flex-col items-center justify-center gap-5 p-[1rem] md:gap-10"
         >
-            <h1 className="text-[5rem] font-bold tracking-wider">Register</h1>
+            <h1 className="text-[2.5rem] font-bold tracking-wider md:text-[5rem]">
+                Register
+            </h1>
             <fieldset className="flex w-full flex-col items-start gap-2">
-                <label className="self-center pl-1 text-xl" htmlFor="name">
+                <label
+                    className="self-center pl-1 text-lg md:text-xl"
+                    htmlFor="name"
+                >
                     Name
                 </label>
                 <input
                     onChange={handleChange}
-                    className="shadow-dark w-full rounded-2xl p-1 pl-2 shadow-sm"
+                    className="shadow-dark w-full rounded-2xl pl-2 shadow-sm md:p-1"
                     type="text"
                     id="name"
                     value={newUser.name}
@@ -111,12 +116,15 @@ export const Register = () => {
                 />
             </fieldset>
             <fieldset className="flex w-full flex-col items-start gap-2">
-                <label className="self-center pl-1 text-xl" htmlFor="email">
+                <label
+                    className="self-center pl-1 text-lg md:text-xl"
+                    htmlFor="email"
+                >
                     Email
                 </label>
                 <input
                     onChange={handleChange}
-                    className="shadow-dark w-full rounded-2xl p-1 pl-2 shadow-sm"
+                    className="shadow-dark w-full rounded-2xl pl-2 shadow-sm md:p-1"
                     type="email"
                     id="email"
                     value={newUser.email}
@@ -124,12 +132,15 @@ export const Register = () => {
                 />
             </fieldset>
             <fieldset className="flex w-full flex-col items-start gap-2">
-                <label className="self-center pl-1 text-xl" htmlFor="imageUrl">
+                <label
+                    className="self-center pl-1 text-lg md:text-xl"
+                    htmlFor="imageUrl"
+                >
                     Image Url
                 </label>
                 <input
                     onChange={handleChange}
-                    className="shadow-dark w-full rounded-2xl p-1 pl-2 shadow-sm"
+                    className="shadow-dark w-full rounded-2xl pl-2 shadow-sm md:p-1"
                     type="text"
                     id="imageUrl"
                     value={newUser.imageUrl}
