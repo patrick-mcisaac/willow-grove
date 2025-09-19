@@ -27,18 +27,20 @@ export const BookingsList = ({ booking, setBookings, getBookings }: Props) => {
     }
     return (
         <div className="relative flex flex-col items-center">
-            <div className="shadow-blue border-light-blue flex w-[30rem] flex-col justify-start gap-[2rem] rounded-2xl border-[.1rem] p-[1rem] shadow-md">
+            <div className="shadow-blue border-light-blue flex w-[15rem] flex-col justify-start gap-[2rem] rounded-2xl border-[.1rem] p-[1rem] shadow-md md:w-[30rem]">
                 <div className="flex justify-around">
-                    <p className="text-[1.5rem] font-semibold">
+                    <p className="text-[1rem] font-semibold md:text-[1.5rem]">
                         {booking.date}
                     </p>
-                    <p className="text-[1.5rem] font-semibold">
+                    <p className="text-[1rem] font-semibold md:text-[1.5rem]">
                         {booking.location?.city}
                     </p>
                 </div>
 
-                <p className="text-center text-[1.3rem] font-semibold">
-                    {booking.eventType.name}
+                <p className="text-center text-[1rem] font-semibold md:text-[1.3rem]">
+                    {booking.eventType.name.endsWith("s") ?
+                        booking.eventType.name.slice(0, -1)
+                    :   booking.eventType.name}
                 </p>
 
                 {/* Had to check that id exists before parseInt
@@ -52,13 +54,13 @@ export const BookingsList = ({ booking, setBookings, getBookings }: Props) => {
                                     `/artists/${id}/booking/${booking.id}/edit`
                                 )
                             }
-                            className="shadow-dark bg-blue-grey hover:bg-light-blue text-dark hover:text-light h-[3rem] w-[10rem] cursor-pointer rounded-2xl font-bold tracking-wider shadow-sm transition hover:scale-105"
+                            className="shadow-dark bg-blue-grey hover:bg-light-blue text-dark hover:text-light w-[5rem] cursor-pointer rounded-2xl text-[1rem] font-semibold tracking-wider shadow-sm transition hover:scale-105 md:h-[3rem] md:w-[10rem] md:font-bold"
                         >
                             Edit
                         </button>
                         <i
                             onClick={handleDelete}
-                            className="fa-regular fa-trash-can cursor-pointer text-[2.5rem] transition hover:scale-105 hover:text-red-500"
+                            className="fa-regular fa-trash-can mt-1 cursor-pointer text-[1.3rem] transition hover:scale-105 hover:text-red-500 md:text-[2.5rem]"
                         ></i>
                     </div>
                 )}

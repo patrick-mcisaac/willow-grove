@@ -34,7 +34,7 @@ export const ArtistDetails = () => {
 
     return (
         <div className="flex flex-col items-center justify-start gap-5 p-10">
-            <h1 className="text-[5rem] font-bold tracking-wider">
+            <h1 className="text-center text-[2rem] font-bold tracking-wider md:text-[4rem] lg:text-[5rem]">
                 {artist?.name}
             </h1>
             <section className="flex flex-col items-center gap-2">
@@ -51,7 +51,7 @@ export const ArtistDetails = () => {
             {id && currentUser === parseInt(id) && (
                 <button
                     onClick={handleDelete}
-                    className="shadow-dark text-dark hover:text-light mt-[3rem] h-[3rem] w-[10rem] cursor-pointer rounded-2xl bg-red-400 font-bold tracking-wider shadow-sm transition hover:scale-105 hover:bg-red-500"
+                    className="shadow-dark text-dark hover:text-light mt-[3rem] h-[2rem] w-[9rem] cursor-pointer rounded-2xl bg-red-400 font-semibold tracking-wider shadow-sm transition hover:scale-105 hover:bg-red-500 md:h-[3rem] md:w-[10rem] md:font-bold"
                 >
                     Delete Profile
                 </button>
