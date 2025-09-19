@@ -50,8 +50,7 @@ export const EditBooking = () => {
     return (
         <form
             name="form"
-            className="mx-auto mt-[10rem] flex w-[20rem] flex-col items-center gap-10"
-            action=""
+            className="mx-auto flex h-[80vh] w-[20rem] flex-col items-center justify-center gap-10"
         >
             <h1 className="text-[3rem] font-bold tracking-wider">Edit Gig</h1>
             <fieldset className="flex w-full flex-col items-start gap-2">
@@ -107,7 +106,7 @@ export const EditBooking = () => {
                 />
             </fieldset>
             <button
-                className="shadow-dark bg-blue-grey hover:bg-light-blue text-dark hover:text-light h-[3rem] w-[10rem] cursor-pointer rounded-2xl font-bold tracking-wider shadow-sm transition hover:scale-105"
+                className="shadow-dark bg-blue-grey hover:bg-light-blue text-dark hover:text-light mt-[5rem] h-[3rem] w-[10rem] cursor-pointer rounded-2xl font-bold tracking-wider shadow-sm transition hover:scale-105"
                 onClick={handleSave}
             >
                 Save

@@ -57,8 +57,7 @@ export const AddBooking = () => {
     return (
         <form
             name="form"
-            className="mx-auto mt-[10rem] flex w-[20rem] flex-col items-center gap-10"
-            action=""
+            className="mx-auto mt-[2rem] flex h-[80vh] w-[20rem] flex-col items-center justify-center gap-10"
         >
             <h1 className="text-[3rem] font-bold tracking-wider">Add a Gig</h1>
             <fieldset className="flex w-full flex-col items-start gap-2">
@@ -114,7 +113,7 @@ export const AddBooking = () => {
                 />
             </fieldset>
             <button
-                className="shadow-dark bg-blue-grey hover:bg-light-blue text-dark hover:text-light h-[3rem] w-[10rem] cursor-pointer rounded-2xl font-bold tracking-wider shadow-sm transition hover:scale-105"
+                className="shadow-dark bg-blue-grey hover:bg-light-blue text-dark hover:text-light bottom-4 h-[3rem] w-[10rem] cursor-pointer rounded-2xl font-bold tracking-wider shadow-sm transition hover:scale-105"
                 onClick={handleSave}
             >
                 Save
