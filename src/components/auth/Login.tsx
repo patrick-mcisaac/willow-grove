@@ -39,11 +39,12 @@ export const Login = () => {
 
     return (
         <form
-            className="mx-auto mt-[10rem] flex w-[20rem] flex-col items-center gap-10"
-            action=""
+            className="mx-auto mt-[5rem] flex w-[20rem] flex-col items-center justify-center gap-10"
             name="form"
         >
-            <h1 className="text-[5rem] font-bold tracking-wider">Login</h1>
+            <h1 className="text-[3rem] font-bold tracking-wider md:text-[5rem]">
+                Login
+            </h1>
             <fieldset className="flex w-full flex-col items-start gap-2">
                 <label htmlFor="email" className="self-center pl-1 text-xl">
                     Email:
