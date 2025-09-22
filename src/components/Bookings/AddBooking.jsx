@@ -56,8 +56,7 @@ export const AddBooking = () => {
     return (
         <form
             name="form"
-            className="mx-auto mt-[10rem] flex w-[20rem] flex-col items-center gap-10"
-            action=""
+            className="mx-auto mt-[2rem] flex h-[80vh] w-[20rem] flex-col items-center justify-center gap-10"
         >
             <h1 className="text-[3rem] font-bold tracking-wider">Add a Gig</h1>
             <fieldset className="flex w-full flex-col items-start gap-2">
