@@ -16,7 +16,7 @@ export const ArtistDetails = () => {
 
     return (
         <div className="flex flex-col items-center justify-start gap-5 p-10">
-            <h1 className="text-[5rem] font-bold tracking-wider">
+            <h1 className="text-center text-[2rem] font-bold tracking-wider md:text-[4rem] lg:text-[5rem]">
                 {artist.name}
             </h1>
             <section className="flex flex-col items-center gap-2">
@@ -30,6 +30,7 @@ export const ArtistDetails = () => {
             />
 
             <Bookings />
+            {/* TODO: add delete profile button */}
         </div>
     )
 }
