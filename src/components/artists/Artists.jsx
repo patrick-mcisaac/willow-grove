@@ -11,6 +11,9 @@ export const Artists = () => {
     useEffect(() => {
         getArtists()
     }, [])
+    useEffect(() => {
+        setFilteredArtists(artists)
+    }, [artists])
     return (
         <div className="flex flex-col items-center gap-[5rem] p-[5rem]">
             <h1 className="text-[5rem] font-bold tracking-wider">
@@ -19,9 +22,10 @@ export const Artists = () => {
             <FilterBar
                 filteredArtists={filteredArtists}
                 setFilteredArtists={setFilteredArtists}
+                artists={artists}
             />
             <div className="flex flex-wrap items-center justify-around gap-[5rem_4rem]">
-                {artists.map(a => (
+                {filteredArtists.map(a => (
                     <ArtistsList key={a.id} artist={a} />
                 ))}
             </div>

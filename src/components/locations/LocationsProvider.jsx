@@ -3,6 +3,7 @@ import { LocationsContext } from "./LocationsContext"
 
 export const LocationsProvider = ({ children }) => {
     const [locations, setLocations] = useState([])
+    const [allArtistsLocations, setAllArtistsLocations] = useState([])
 
     const getLocations = () => {
         fetch(`http://localhost:8088/locations`)
@@ -20,9 +21,21 @@ export const LocationsProvider = ({ children }) => {
         })
     }
 
+    const getAllArtistsLocations = () => {
+        fetch(`http://localhost:8088/artistLocations`)
+            .then(res => res.json())
+            .then(setAllArtistsLocations)
+    }
+
     return (
         <LocationsContext.Provider
-            value={{ locations, getLocations, addArtistLocation }}
+            value={{
+                locations,
+                getLocations,
+                addArtistLocation,
+                getAllArtistsLocations,
+                allArtistsLocations
+            }}
         >
             {children}
         </LocationsContext.Provider>
