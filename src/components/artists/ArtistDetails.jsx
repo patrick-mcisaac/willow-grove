@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Bookings } from "../Bookings/Bookings"
 import { ArtistsContext } from "./ArtistContext"
+import { UserContext } from "../../views/UserContext"
 
 export const ArtistDetails = () => {
     const [artist, setArtist] = useState({})
@@ -9,6 +10,8 @@ export const ArtistDetails = () => {
     const { id } = useParams()
 
     const { getArtistById } = useContext(ArtistsContext)
+
+    const { currentUser, setCurrentUser } = useContext(UserContext)
 
     useEffect(() => {
         getArtistById(id).then(setArtist)
@@ -30,7 +33,14 @@ export const ArtistDetails = () => {
             />
 
             <Bookings />
-            {/* TODO: add delete profile button */}
+            {id && currentUser === parseInt(id) && (
+                <button
+                    onClick={handleDelete}
+                    className="shadow-dark text-dark hover:text-light mt-[3rem] h-[2rem] w-[9rem] cursor-pointer rounded-2xl bg-red-400 font-semibold tracking-wider shadow-sm transition hover:scale-105 hover:bg-red-500 md:h-[3rem] md:w-[10rem] md:font-bold"
+                >
+                    Delete Profile
+                </button>
+            )}
         </div>
     )
 }
