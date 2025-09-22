@@ -52,6 +52,18 @@ export const ArtistsProvider = ({ children }) => {
             .then(setArtistLocations)
     }
 
+    const deleteArtist = async id => {
+        await fetch(`http://localhost:8088/users/${id}`, {
+            method: "DELETE"
+        })
+        await fetch(`http://localhost:8088/artistLocations?userId=${id}`, {
+            method: "DELETE"
+        })
+        await fetch(`http://localhost:8088/bookings?userId=${id}`, {
+            method: "DELETE"
+        })
+    }
+
     return (
         <ArtistsContext.Provider
             value={{
@@ -63,7 +75,8 @@ export const ArtistsProvider = ({ children }) => {
                 artistBookings,
                 getArtistBookings,
                 artistLocations,
-                getArtistsLocations
+                getArtistsLocations,
+                deleteArtist
             }}
         >
             {children}

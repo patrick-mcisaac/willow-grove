@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { Bookings } from "../Bookings/Bookings"
 import { ArtistsContext } from "./ArtistContext"
 import { UserContext } from "../../views/UserContext"
@@ -7,15 +7,28 @@ import { UserContext } from "../../views/UserContext"
 export const ArtistDetails = () => {
     const [artist, setArtist] = useState({})
 
+    const navigate = useNavigate()
+
     const { id } = useParams()
 
-    const { getArtistById } = useContext(ArtistsContext)
+    const { getArtistById, deleteArtist } = useContext(ArtistsContext)
 
     const { currentUser, setCurrentUser } = useContext(UserContext)
 
     useEffect(() => {
         getArtistById(id).then(setArtist)
     }, [id])
+
+    const handleDelete = async e => {
+        e.preventDefault()
+
+        if (id) {
+            await deleteArtist(id)
+            localStorage.removeItem("currentUserId")
+            setCurrentUser(undefined)
+            navigate("/")
+        }
+    }
 
     return (
         <div className="flex flex-col items-center justify-start gap-5 p-10">
