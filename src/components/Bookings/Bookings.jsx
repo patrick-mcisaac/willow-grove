@@ -26,7 +26,7 @@ export const Bookings = () => {
                     onClick={() =>
                         navigate(`/artists/${currentUser}/booking/add`)
                     }
-                    className="shadow-dark bg-blue-grey hover:bg-light-blue text-dark hover:text-light h-[3rem] w-[10rem] cursor-pointer rounded-2xl font-bold tracking-wider shadow-sm transition hover:scale-105"
+                    className="shadow-dark bg-blue-grey hover:bg-light-blue text-dark hover:text-light h-[2rem] w-[9rem] cursor-pointer rounded-2xl font-semibold tracking-wider shadow-sm transition hover:scale-105 md:h-[3rem] md:w-[10rem] md:font-bold"
                 >
                     Add Gig
                 </button>
