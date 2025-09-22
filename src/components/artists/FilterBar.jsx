@@ -62,8 +62,12 @@ export const FilterBar = ({ artists, setFilteredArtists }) => {
         setSearchArtist(e.target.value)
     }
     return (
-        <div>
-            <select value={locationChoice} onChange={handleLocation}>
+        <div className="flex flex-col items-center justify-center gap-[2rem] p-[0_.5rem] md:mt-[-2rem] md:gap-[3rem] lg:w-full lg:flex-row lg:justify-center lg:gap-[20rem]">
+            <select
+                className="shadow-dark w-[20rem] cursor-pointer rounded-2xl p-1 pl-2 shadow-sm"
+                value={locationChoice}
+                onChange={handleLocation}
+            >
                 <option value="0">Choose Location</option>
                 {locations.map(l => (
                     <option key={l.id} value={l.id}>
@@ -73,6 +77,7 @@ export const FilterBar = ({ artists, setFilteredArtists }) => {
             </select>
 
             <input
+                className="shadow-dark w-[20rem] rounded-2xl p-1 pl-3 shadow-sm"
                 type="text"
                 onChange={handleSearch}
                 value={searchArtist}
