@@ -20,7 +20,6 @@ export const Artists = () => {
                 Our Artists
             </h1>
             <FilterBar
-                filteredArtists={filteredArtists}
                 setFilteredArtists={setFilteredArtists}
                 artists={artists}
             />

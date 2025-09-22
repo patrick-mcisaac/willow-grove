@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { LocationsContext } from "../locations/LocationsContext"
 
-export const FilterBar = ({ artists, filteredArtists, setFilteredArtists }) => {
+export const FilterBar = ({ artists, setFilteredArtists }) => {
     const {
         getLocations,
         locations,
@@ -11,6 +11,7 @@ export const FilterBar = ({ artists, filteredArtists, setFilteredArtists }) => {
 
     const [locationChoice, setLocationChoice] = useState(0)
     const [searchArtist, setSearchArtist] = useState("")
+    const [filteredLocation, setFilteredLocation] = useState([])
 
     useEffect(() => {
         getLocations()
@@ -19,20 +20,39 @@ export const FilterBar = ({ artists, filteredArtists, setFilteredArtists }) => {
 
     useEffect(() => {
         if (locationChoice === 0) {
-            setFilteredArtists(artists)
+            setFilteredLocation(allArtistsLocations)
         } else {
-            const filteredLocation = allArtistsLocations.filter(
+            const found = allArtistsLocations.filter(
                 l => l.locationId === locationChoice
             )
 
-            const found = artists.filter(a => {
-                debugger
-                return filteredLocation.forEach(l => l.userId === a.id)
-            })
+            setFilteredLocation(found)
+        }
+    }, [locationChoice, allArtistsLocations])
 
+    useEffect(() => {
+        if (locationChoice === 0) {
+            setFilteredArtists(artists)
+        } else {
+            const found = artists.filter(a => {
+                return filteredLocation.find(location => {
+                    return a.id === location.userId
+                })
+            })
             setFilteredArtists(found)
         }
-    }, [locationChoice, allArtistsLocations, artists])
+    }, [artists, filteredLocation, locationChoice])
+
+    useEffect(() => {
+        if (searchArtist === "") {
+            setFilteredArtists(artists)
+        } else {
+            const found = artists.filter(a =>
+                a.name.toLowerCase().includes(searchArtist.toLowerCase())
+            )
+            setFilteredArtists(found)
+        }
+    }, [searchArtist, artists])
 
     const handleLocation = e => {
         setLocationChoice(parseInt(e.target.value))
