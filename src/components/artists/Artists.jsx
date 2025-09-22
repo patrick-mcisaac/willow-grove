@@ -1,10 +1,12 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 
 import { ArtistsList } from "./ArtistsList"
 import { ArtistsContext } from "./ArtistContext"
+import { FilterBar } from "./FilterBar"
 
 export const Artists = () => {
     const { artists, getArtists } = useContext(ArtistsContext)
+    const [filteredArtists, setFilteredArtists] = useState([])
 
     useEffect(() => {
         getArtists()
@@ -14,6 +16,10 @@ export const Artists = () => {
             <h1 className="text-[5rem] font-bold tracking-wider">
                 Our Artists
             </h1>
+            <FilterBar
+                filteredArtists={filteredArtists}
+                setFilteredArtists={setFilteredArtists}
+            />
             <div className="flex flex-wrap items-center justify-around gap-[5rem_4rem]">
                 {artists.map(a => (
                     <ArtistsList key={a.id} artist={a} />
