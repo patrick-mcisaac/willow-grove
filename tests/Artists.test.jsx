@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import React from "react"
 import "@testing-library/jest-dom/vitest"
-import { it, expect, describe, vi } from "vitest"
+import { it, expect, describe, vi, afterEach } from "vitest"
 import { Artists } from "../src/components/artists/Artists"
 import { ArtistsContext } from "../src/components/artists/ArtistContext"
 
@@ -31,6 +31,12 @@ vi.mock("../src/components/artists/ArtistsList", () => {
     return {
         ArtistsList: () => <div data-testid="artist list"></div>
     }
+})
+
+vi.mock("../src/components/artists/FilterBar.jsx")
+
+afterEach(() => {
+    vi.clearAllMocks()
 })
 
 describe("Artists", () => {

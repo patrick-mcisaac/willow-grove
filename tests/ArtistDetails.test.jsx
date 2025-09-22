@@ -5,6 +5,7 @@ import { it, expect, describe, vi } from "vitest"
 import { ArtistDetails } from "../src/components/artists/ArtistDetails"
 import { MemoryRouter, Route, Routes } from "react-router-dom"
 import { ArtistsContext } from "../src/components/artists/ArtistContext"
+import { UserContext } from "../src/views/UserContext"
 
 const createTestWrapper = (contextValues = {}) => {
     const {
@@ -15,13 +16,18 @@ const createTestWrapper = (contextValues = {}) => {
                 email: "test email",
                 url: "test url"
             })
+        },
+        UserValues = {
+            currentUser: 1
         }
     } = contextValues
 
     return ({ children }) => (
-        <ArtistsContext.Provider value={ArtistValues}>
-            {children}
-        </ArtistsContext.Provider>
+        <UserContext.Provider value={UserValues}>
+            <ArtistsContext.Provider value={ArtistValues}>
+                {children}
+            </ArtistsContext.Provider>
+        </UserContext.Provider>
     )
 }
 vi.mock("../src/components/Bookings/Bookings", () => {
